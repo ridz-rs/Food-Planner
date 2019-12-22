@@ -4,8 +4,8 @@ Version 1:
 User Story 1.1:
 Create a gui allowing users to choose a price range and calorie limit without having to actually enter the numbers
 This is "stage 1". Have a confirm button that changes the gui to stage 2
-Owner:
-Status:
+Owner: Shrey	
+Status: In Progress
 Deadline:
 ===================================================================================================================
 User Story 1.2:
