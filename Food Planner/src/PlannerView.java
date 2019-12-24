@@ -12,7 +12,7 @@ public class PlannerView extends Application implements Observer{
 
 	@Override
 	public void update(Observable o) {
-		// TODO Auto-generated method stub
+		System.out.println("moving to new screen");
 	}
 	public static void main(String[] args) {
 		launch(args);
@@ -28,43 +28,44 @@ public class PlannerView extends Application implements Observer{
 		Label budgetLabel = new Label("Enter your Budget");
 		Label calorieLabel = new Label("Enter your Calorie Limit");
 		
-		TextField budget = new TextField();
-		TextField calorieLimit = new TextField();
-
+		Slider budget = new Slider();
+		budget.setMax(200);
+		budget.setMin(0);
+		budget.setShowTickLabels(true);
+		budget.setShowTickMarks(true);
+		budget.setMajorTickUnit(50);
+		budget.setMinorTickCount(5);
+		budget.setBlockIncrement(10);
 		
-		Slider Budget = new Slider();
-		// Create the GUI controller to control the Model
+		Slider calorie = new Slider();
+		calorie.setMax(2000);
+		calorie.setMin(0);
+		calorie.setShowTickLabels(true);
+		calorie.setShowTickMarks(true);
+		calorie.setMajorTickUnit(50);
+		calorie.setMinorTickCount(5);
+		calorie.setBlockIncrement(10);
+		
 		GridPane mainPage = new GridPane();
 		mainPage.setPadding(new Insets(10));
+		
+		Label inProgress = new Label("In Progress");
+		Scene secondary = new Scene(inProgress, 500, 500);
 
-		// Create the buttons
 		Button b1 = new Button("Confirm");
-		b1.setOnAction(new plannerController(budget, calorieLimit));
+		b1.setOnAction(new plannerController(budget, calorie, stage, secondary));
 		
 		mainPage.setHgap(10);
 		mainPage.setVgap(10);
+		mainPage.add(heading, 5, 1);
+		mainPage.add(budgetLabel, 5, 2);
+		mainPage.add(budget, 5, 3);
+		mainPage.add(calorieLabel, 5, 4);
+		mainPage.add(calorie, 5, 5);
+		mainPage.add(b1, 5, 6);
 
-		// add them to the contentPane
-		mainPage.add(heading, 0, 1);
-		mainPage.add(budgetLabel, 0, 2);
-		mainPage.add(budget, 0, 3);
-		mainPage.add(calorieLabel, 0, 4);
-		mainPage.add(calorieLimit, 0, 5);
-		mainPage.add(b1, 0, 6);
+		Scene scene = new Scene(mainPage, 500, 500);
 
-		// Create button press event handlers
-//		ButtonInflateActionListener mb1 = new ButtonInflateActionListener(model_b1);
-//		ButtonInflateActionListener mb2 = new ButtonInflateActionListener(model_b2);
-
-		// Tell the buttons who they should call when they are pressed.
-		// That is, hook up the controller to the Model.
-//		b1.addEventHandler(ActionEvent.ACTION, mb1);
-//		b2.addEventHandler(ActionEvent.ACTION, mb2);
-
-		// SCENE
-		Scene scene = new Scene(mainPage, 200, 225);
-
-		// STAGE
 		stage.setTitle("FoodPlanner");
 		stage.setScene(scene);
 		stage.show();

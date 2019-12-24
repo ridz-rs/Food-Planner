@@ -3,36 +3,30 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class plannerController implements EventHandler<ActionEvent>{
-	TextField budget;
-	TextField calorie;
-	public plannerController(TextField budget, TextField calorie) {
+	Slider budget;
+	Slider calorie;
+	Stage stage;
+	Scene secondary;
+	public plannerController(Slider budget, Slider calorie, Stage stage, Scene secondary) {
 		this.budget = budget;
 		this.calorie = calorie;
+		this.stage = stage;
+		this.secondary = secondary;
 	}
 	@Override
 	public void handle(ActionEvent event) {
 		Button b1 = (Button)event.getSource();
-		if (b1.getText() == "Set Values") {
-			System.out.println(budget.getText() + "," + calorie.getText());
-		}
 		try {
-			Double budgetDouble = Double.parseDouble(this.budget.getText());
-			Double calorieDouble = Double.parseDouble(this.calorie.getText());
-			// n is a valid integer in here...
-			if (validAmount(budgetDouble, calorieDouble) && (b1.getText() == "Set Values")) {
-				System.out.println("You inserted correct amounts");
-				// Make a main display surface
-				Stage stage = new Stage();
-                BorderPane mainPane = new BorderPane();
-                mainPane.setPadding(new Insets(20));
-                // MAIN SCENE 
-                Scene mainScene = new Scene(mainPane);            
-                
+			int budget = (int)this.budget.getValue();
+			int calorie = (int)this.calorie.getValue();
+			if (validAmount(budget, calorie) && (b1.getText() == "Confirm")) {
+				System.out.println("You inserted correct amounts");   
 			}
 			else {
 				System.out.println("sorry please enter correct amount again");
@@ -42,8 +36,12 @@ public class plannerController implements EventHandler<ActionEvent>{
 		catch(NumberFormatException nfe){
 			System.out.println("invalid numbers");
 		}
+		if (b1.getText() == "Confirm") {
+			stage.setScene(secondary);
+		}
 	}
-	public boolean validAmount(Double x, Double y) {
+	
+	public boolean validAmount(int x, int y) {
 		if ((0 <= x) && (x <= 200) && (y <= 2000) && (0 <= y)) {
 			return true;
 		}
