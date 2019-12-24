@@ -1,3 +1,4 @@
+package PlannerV1;
 
 public class PlannerView implements Observer{
 
