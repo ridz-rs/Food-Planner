@@ -1,9 +1,9 @@
 
 public class Food {
 String name;
-double price_limit;
+double price;
 public Food(String name, double price) {
 	this.name = name;
-	this.price_limit = price;
+	this.price = price;
 }
 }
