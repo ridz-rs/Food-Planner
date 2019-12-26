@@ -4,15 +4,15 @@ Version 1:
 User Story 1.1:
 Create a gui allowing users to choose a price range and calorie limit without having to actually enter the numbers
 This is "stage 1". Have a confirm button that changes the gui to stage 2
-Owner:
-Status:
-Deadline:
+Owner: Shrey	
+Status: Complete
+Deadline: 24-12-19
 ===================================================================================================================
 User Story 1.2:
 On choosing a price range and calorie limit, display the list of meal plans as "packages", giving a brief textual 
 desciption of the contents of the package. This is "Stage 2"
-Owner:
-Status:
+Owner: Shrey
+Status: In Progress
 Deadline:
 ===================================================================================================================
 User Story 1.3:
