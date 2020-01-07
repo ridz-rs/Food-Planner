@@ -79,6 +79,7 @@ public class PlannerModel extends Observable{
 		String filename = "C:\\Users\\Riddhesh\\Downloads\\PizzaPizzaData.csv";
 		PlannerModel model = new PlannerModel();
 		System.out.println(model.get_data(filename));
-		System.out.println(model.data.toString());
+		System.out.println(data.toString());
+		PizzaPizza.menu = data.get("PizzaPizza");
 	}
 }

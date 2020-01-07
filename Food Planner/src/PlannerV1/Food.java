@@ -15,4 +15,8 @@ public Food (String name) {
 public void set_price(double price) {
 	this.price = price;
 }
+public boolean check_validity(double price, double calories) {
+	if (this.price<price && this.calories<calories) return true;
+	else return false;
+}
 }

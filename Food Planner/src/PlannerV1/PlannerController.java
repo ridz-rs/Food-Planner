@@ -1,3 +1,4 @@
+package PlannerV1;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -8,12 +9,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-public class plannerController implements EventHandler<ActionEvent>{
+public class PlannerController implements EventHandler<ActionEvent>{
 	Slider budget;
 	Slider calorie;
 	Stage stage;
 	Scene secondary;
-	public plannerController(Slider budget, Slider calorie, Stage stage, Scene secondary) {
+	public PlannerController(Slider budget, Slider calorie, Stage stage, Scene secondary) {
 		this.budget = budget;
 		this.calorie = calorie;
 		this.stage = stage;
