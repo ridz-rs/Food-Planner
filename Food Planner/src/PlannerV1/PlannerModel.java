@@ -11,6 +11,8 @@ public class PlannerModel extends Observable{
 	private Pattern pRestaurantEnd = Pattern.compile(",*");
 	HashMap <String, ArrayList<Food>> planned_meals = new HashMap<String, ArrayList<Food>>();
 	static HashMap <String, ArrayList<Food>> data = new HashMap<String, ArrayList<Food>>();
+	double price_limit=0.0;
+	double calorie_limit=0.0;
 	public boolean get_data(String filename) { //To be changed
 		FileReader f = null;
 		try {
@@ -75,6 +77,26 @@ public class PlannerModel extends Observable{
 		if (state!=99) return true;
 		else return false;
 	}
+	public void get_plan() {
+		for (String key: data.keySet()) {
+			for (Food food: data.get(key)) {
+				if (in_range(food.calories, calorie_limit) && in_range(food.price, price_limit)) {
+					if (planned_meals.containsKey(key)) planned_meals.get(key).add(food);
+					else {
+						ArrayList<Food>lst = new ArrayList<Food>();
+						lst.add(food);
+						planned_meals.put(key,lst);
+					}
+				}
+			}
+		}
+		this.notify_all();
+	}
+	private static boolean in_range(double value, double limit) {
+		if ((value>limit-10)&&(value<limit+10)) return true;
+		else return false;
+	}
+
 	public static void main(String args[]) {
 		String filename = "C:\\Users\\Riddhesh\\Downloads\\PizzaPizzaData.csv";
 		PlannerModel model = new PlannerModel();

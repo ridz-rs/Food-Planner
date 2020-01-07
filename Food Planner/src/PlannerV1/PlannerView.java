@@ -11,10 +11,10 @@ import javafx.stage.Stage;
 
 
 public class PlannerView extends Application implements Observer{
-
 	@Override
 	public void update(Observable o) {
-		System.out.println("moving to new screen");
+		PlannerModel model = (PlannerModel)o;
+		System.out.println(model.planned_meals.toString());
 	}
 	public static void main(String[] args) {
 		launch(args);
@@ -25,7 +25,8 @@ public class PlannerView extends Application implements Observer{
 	}
 	
 	public void initUI(Stage stage) throws Exception {
-		
+		PlannerModel model = new PlannerModel();
+		model.add(this);
 		Label heading = new Label("Welcome to UTM's Food Planner");
 		Label budgetLabel = new Label("Enter your Budget");
 		Label calorieLabel = new Label("Enter your Calorie Limit");
@@ -53,9 +54,10 @@ public class PlannerView extends Application implements Observer{
 		
 		Label inProgress = new Label("In Progress");
 		Scene secondary = new Scene(inProgress, 500, 500);
+	
 
 		Button b1 = new Button("Confirm");
-		b1.setOnAction(new PlannerController(budget, calorie, stage, secondary));
+		b1.setOnAction(new PlannerController(budget, calorie, stage, secondary, new PlannerModel()));
 		
 		mainPage.setHgap(10);
 		mainPage.setVgap(10);

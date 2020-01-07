@@ -14,11 +14,13 @@ public class PlannerController implements EventHandler<ActionEvent>{
 	Slider calorie;
 	Stage stage;
 	Scene secondary;
-	public PlannerController(Slider budget, Slider calorie, Stage stage, Scene secondary) {
+	PlannerModel model;
+	public PlannerController(Slider budget, Slider calorie, Stage stage, Scene secondary, PlannerModel model) {
 		this.budget = budget;
 		this.calorie = calorie;
 		this.stage = stage;
 		this.secondary = secondary;
+		this.model = model;
 	}
 	@Override
 	public void handle(ActionEvent event) {
@@ -26,6 +28,9 @@ public class PlannerController implements EventHandler<ActionEvent>{
 		try {
 			int budget = (int)this.budget.getValue();
 			int calorie = (int)this.calorie.getValue();
+			model.price_limit = budget;
+			model.calorie_limit = calorie;
+			model.get_plan();
 			if (validAmount(budget, calorie) && (b1.getText() == "Confirm")) {
 				System.out.println("You inserted correct amounts");   
 			}
