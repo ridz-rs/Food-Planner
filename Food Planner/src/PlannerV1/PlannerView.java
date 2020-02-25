@@ -50,14 +50,10 @@ public class PlannerView extends Application implements Observer{
 		calorie.setBlockIncrement(10);
 		
 		GridPane mainPage = new GridPane();
-		mainPage.setPadding(new Insets(10));
-		
-		Label inProgress = new Label("In Progress");
-		Scene secondary = new Scene(inProgress, 500, 500);
-	
+		mainPage.setPadding(new Insets(10));	
 
 		Button b1 = new Button("Confirm");
-		b1.setOnAction(new PlannerController(budget, calorie, stage, secondary, new PlannerModel()));
+		b1.setOnAction(new PlannerController(budget, calorie, stage));
 		
 		mainPage.setHgap(10);
 		mainPage.setVgap(10);

@@ -4,9 +4,11 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class PlannerController implements EventHandler<ActionEvent>{
@@ -15,12 +17,10 @@ public class PlannerController implements EventHandler<ActionEvent>{
 	Stage stage;
 	Scene secondary;
 	PlannerModel model;
-	public PlannerController(Slider budget, Slider calorie, Stage stage, Scene secondary, PlannerModel model) {
+	public PlannerController(Slider budget, Slider calorie, Stage stage) {
 		this.budget = budget;
 		this.calorie = calorie;
 		this.stage = stage;
-		this.secondary = secondary;
-		this.model = model;
 	}
 	@Override
 	public void handle(ActionEvent event) {
@@ -28,9 +28,6 @@ public class PlannerController implements EventHandler<ActionEvent>{
 		try {
 			int budget = (int)this.budget.getValue();
 			int calorie = (int)this.calorie.getValue();
-			model.price_limit = budget;
-			model.calorie_limit = calorie;
-			model.get_plan();
 			if (validAmount(budget, calorie) && (b1.getText() == "Confirm")) {
 				System.out.println("You inserted correct amounts");   
 			}
@@ -43,7 +40,10 @@ public class PlannerController implements EventHandler<ActionEvent>{
 			System.out.println("invalid numbers");
 		}
 		if (b1.getText() == "Confirm") {
-			stage.setScene(secondary);
+			Secondary pizza = new Secondary((int)this.budget.getValue(), (int)this.calorie.getValue());
+			Label l = new Label("this");
+			Scene scene = new Scene(pizza, 500, 500);
+			stage.setScene(scene);
 		}
 	}
 	

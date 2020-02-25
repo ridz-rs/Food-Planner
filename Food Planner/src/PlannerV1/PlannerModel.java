@@ -11,8 +11,8 @@ public class PlannerModel extends Observable{
 	private Pattern pRestaurantEnd = Pattern.compile(",*");
 	HashMap <String, ArrayList<Food>> planned_meals = new HashMap<String, ArrayList<Food>>();
 	static HashMap <String, ArrayList<Food>> data = new HashMap<String, ArrayList<Food>>();
-	double price_limit=0.0;
-	double calorie_limit=0.0;
+	double price_limit=1000.0;
+	double calorie_limit=1000.0;
 	public boolean get_data(String filename) { //To be changed
 		FileReader f = null;
 		try {
@@ -98,10 +98,12 @@ public class PlannerModel extends Observable{
 	}
 
 	public static void main(String args[]) {
-		String filename = "C:\\Users\\Riddhesh\\Downloads\\PizzaPizzaData.csv";
+		String filename = "C:\\Projects\\Food-Planner\\Food Planner\\src\\PlannerV1\\PizzaPizzaData.csv";
 		PlannerModel model = new PlannerModel();
 		System.out.println(model.get_data(filename));
 		System.out.println(data.toString());
+		model.get_plan();
+		System.out.println(model.planned_meals.toString());
 		PizzaPizza.menu = data.get("PizzaPizza");
 	}
 }
