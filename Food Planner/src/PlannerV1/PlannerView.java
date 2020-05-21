@@ -41,7 +41,7 @@ public class PlannerView extends Application implements Observer{
 		budget.setBlockIncrement(10);
 		
 		Slider calorie = new Slider();
-		calorie.setMax(2000);
+		calorie.setMax(5000);
 		calorie.setMin(0);
 		calorie.setShowTickLabels(true);
 		calorie.setShowTickMarks(true);
