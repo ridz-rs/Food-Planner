@@ -8,33 +8,20 @@
     <title>UTM Food Planner</title>
 </head>
 <body>
-    <h2 id="header">UTM Food Planner</h2>
+    <header>UTM Food Planner</header>
     <!-- <img src="bg.png" alt=""> -->
     <div id="center">
-        <form class="form-horizontal">
-            <div class="form-group">
-            <label class="control-label col-sm-2" for="number">Budget</label>
-            <div class="col-sm-10">
-                <input type="number" class="form-control" id="budget" placeholder="Enter budget">
+        <form id="form">
+            <div id="calories"><span>How many calories?</span> <span><output name="OutputName" id="OutputId1">0</output></span></div>
+            <div>
+                <input type="range" id="calorieslider" min="0" max="2000" value="0" oninput="OutputId1.value = calorieslider.value">
             </div>
+            <div id="budget">How much to spend? <output name="OutputName" id="OutputId2">0</output></div>
+            <div>
+                <input type="range" id="budgetslider" min="0" max="200" value="0" oninput="OutputId2.value = budgetslider.value">
             </div>
-            <div class="form-group">
-            <label class="control-label col-sm-2" for="number">Calories:</label>
-            <div class="col-sm-10">
-                <input type="number" class="form-control" id="calorie" placeholder="Enter calories">
-            </div>
-            </div>
-            <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <div class="checkbox">
-                <label><input type="checkbox"> Remember data</label>
-                </div>
-            </div>
-            </div>
-            <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-default" id="submit">Submit</button>
-            </div>
+            <div>
+                <button type="submit" id="submit">Show me meal plans</button>
             </div>
         </form>
     </div>
