@@ -14,11 +14,11 @@
         <form id="form">
             <div id="calories"><span>How many calories?</span> <span><output name="OutputName" id="OutputId1">0</output></span></div>
             <div>
-                <input type="range" id="calorieslider" min="0" max="2000" value="0" oninput="OutputId1.value = calorieslider.value">
+                <input type="range" id="calorieslider" min="0" max="2000" value="0" oninput="OutputId1.value = calorieslider.value" class="slider">
             </div>
             <div id="budget">How much to spend? <output name="OutputName" id="OutputId2">0</output></div>
             <div>
-                <input type="range" id="budgetslider" min="0" max="200" value="0" oninput="OutputId2.value = budgetslider.value">
+                <input type="range" id="budgetslider" min="0" max="200" value="0" oninput="OutputId2.value = budgetslider.value" class="slider">
             </div>
             <div>
                 <button type="submit" id="submit">Show me meal plans</button>

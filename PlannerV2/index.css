@@ -60,47 +60,109 @@ header {
   display: flex;
 }
 
+#submit:hover {
+  opacity: 1;
+}
+
+#OutputId1 {
+  animation-name: numbers;
+  animation-duration: 2s;
+  animation-iteration-count: 1;
+}
+
+@keyframes numbers {
+  from {
+    transform: translateY(-10em);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
 #calorieslider {
   top: 328px;
   left: 195px;
-  width: 1530px;
-  height: 10px;
-  background: #FFFFFF 0% 0% no-repeat padding-box;
-  box-shadow: 0px 3px 6px #0000004D;
-  border: 0.1000000015px solid #707070;
-  border-radius: 100%;
-  opacity: 1;
-  position: absolute;
-  background: #37D500 0% 0% no-repeat padding-box;
-  cursor: pointer;
-}
-
-#calorieslider::-ms-thumb {
-  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-  border: 1px solid #000000;
-  height: 36px;
-  width: 16px;
-  border-radius: 3px;
-  background: white;
-  cursor: pointer;
 }
 
 #budgetslider {
   top: 546px;
   left: 195px;
-  width: 1530px;
-  height: 10px;
-  background: #FFFFFF 0% 0% no-repeat padding-box;
-  box-shadow: 0px 3px 6px #0000004D;
-  border: 0.1000000015px solid #707070;
-  border-radius: 20px;
-  opacity: 1;
-  position: absolute;
-  background-color: #37D500;
 }
 
-#submit:hover {
-  opacity: 1;
+input[type=range] {
+  width: 1530px;
+  height: 40px;
+  margin: auto;
+  -webkit-appearance: none;
+  position: absolute;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 15px;
+  /* iOS */
+}
+
+::-webkit-slider-runnable-track {
+  background: #ddd;
+}
+
+/*
+ * 1. Set to 0 width and remove border for a slider without a thumb
+ */
+::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  /* 1 */
+  height: 40px;
+  background: #37D500;
+  box-shadow: -100vw 0 0 100vw #37D500;
+  border: 15px solid white;
+  /* 1 */
+  border-width: 5px;
+}
+
+::-moz-range-track {
+  height: 40px;
+  background: #ddd;
+}
+
+::-moz-range-thumb {
+  background: #fff;
+  height: 40px;
+  width: 20px;
+  border: 3px solid #999;
+  border-radius: 50% !important;
+  box-shadow: -100vw 0 0 100vw #37D500;
+  box-sizing: border-box;
+}
+
+::-ms-fill-lower {
+  background: #37D500;
+}
+
+::-ms-thumb {
+  background: #fff;
+  border: 2px solid #999;
+  height: 40px;
+  width: 20px;
+  box-sizing: border-box;
+}
+
+::-ms-ticks-after {
+  display: none;
+}
+
+::-ms-ticks-before {
+  display: none;
+}
+
+::-ms-track {
+  background: #ddd;
+  color: transparent;
+  height: 40px;
+  border: none;
+}
+
+::-ms-tooltip {
+  display: none;
 }
 
 /*# sourceMappingURL=index.css.map */
