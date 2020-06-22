@@ -8,8 +8,7 @@ header {
   font-size: 60px;
   font-family: Jost, sans-serif;
   margin: 0px 0px 0px 0px;
-  padding: 0px;
-}
+  padding: 0px; }
 
 #submit {
   top: 801px;
@@ -25,8 +24,7 @@ header {
   font-family: Jost;
   letter-spacing: 0px;
   color: #FFFFFF;
-  position: absolute;
-}
+  position: absolute; }
 
 #calories {
   top: 236px;
@@ -41,8 +39,7 @@ header {
   opacity: 1;
   position: absolute;
   justify-content: space-between;
-  display: flex;
-}
+  display: flex; }
 
 #budget {
   top: 454px;
@@ -57,38 +54,30 @@ header {
   opacity: 1;
   position: absolute;
   justify-content: space-between;
-  display: flex;
-}
+  display: flex; }
 
 #submit:hover {
-  opacity: 1;
-}
+  opacity: 1; }
 
 #OutputId1 {
   animation-name: numbers;
   animation-duration: 2s;
-  animation-iteration-count: 1;
-}
+  animation-iteration-count: 1; }
 
 @keyframes numbers {
   from {
-    transform: translateY(-10em);
-  }
+    transform: translateY(-10em); }
   to {
-    transform: translateY(0);
-  }
-}
+    transform: translateY(0); } }
 #calorieslider {
   top: 328px;
-  left: 195px;
-}
+  left: 195px; }
 
 #budgetslider {
   top: 546px;
-  left: 195px;
-}
+  left: 195px; }
 
-input[type=range] {
+input[type="range"] {
   width: 1530px;
   height: 40px;
   margin: auto;
@@ -97,12 +86,10 @@ input[type=range] {
   overflow: hidden;
   cursor: pointer;
   border-radius: 15px;
-  /* iOS */
-}
+  /* iOS */ }
 
 ::-webkit-slider-runnable-track {
-  background: #ddd;
-}
+  background: #ddd; }
 
 /*
  * 1. Set to 0 width and remove border for a slider without a thumb
@@ -113,16 +100,14 @@ input[type=range] {
   /* 1 */
   height: 40px;
   background: #37D500;
-  box-shadow: -100vw 0 0 100vw #37D500;
+  box-shadow: -100vw 0 0 100vw  #37D500;
   border: 15px solid white;
   /* 1 */
-  border-width: 5px;
-}
+  border-width: 5px; }
 
 ::-moz-range-track {
   height: 40px;
-  background: #ddd;
-}
+  background: #ddd; }
 
 ::-moz-range-thumb {
   background: #fff;
@@ -130,39 +115,32 @@ input[type=range] {
   width: 20px;
   border: 3px solid #999;
   border-radius: 50% !important;
-  box-shadow: -100vw 0 0 100vw #37D500;
-  box-sizing: border-box;
-}
+  box-shadow: -100vw 0 0 100vw  #37D500;
+  box-sizing: border-box; }
 
 ::-ms-fill-lower {
-  background: #37D500;
-}
+  background: #37D500; }
 
 ::-ms-thumb {
   background: #fff;
   border: 2px solid #999;
   height: 40px;
   width: 20px;
-  box-sizing: border-box;
-}
+  box-sizing: border-box; }
 
 ::-ms-ticks-after {
-  display: none;
-}
+  display: none; }
 
 ::-ms-ticks-before {
-  display: none;
-}
+  display: none; }
 
 ::-ms-track {
   background: #ddd;
   color: transparent;
   height: 40px;
-  border: none;
-}
+  border: none; }
 
 ::-ms-tooltip {
-  display: none;
-}
+  display: none; }
 
 /*# sourceMappingURL=index.css.map */
