@@ -29,7 +29,7 @@ header {
 #calories {
   top: 236px;
   left: 195px;
-  width: 1530px;
+  width: 79.6875%;
   height: 50px;
   text-align: left;
   font-size: 50px;
@@ -44,7 +44,7 @@ header {
 #budget {
   top: 454px;
   left: 194px;
-  width: 1530px;
+  width: 79.6875%;
   height: 68px;
   text-align: left;
   font-size: 50px;
@@ -77,9 +77,9 @@ header {
   top: 546px;
   left: 195px; }
 
-input[type="range"] {
-  width: 1530px;
-  height: 40px;
+input[type=range] {
+  width: 79.6875%;
+  height: 20px;
   margin: auto;
   -webkit-appearance: none;
   position: absolute;
@@ -89,7 +89,9 @@ input[type="range"] {
   /* iOS */ }
 
 ::-webkit-slider-runnable-track {
-  background: #ddd; }
+  background: #ddd;
+  height: 20px;
+}
 
 /*
  * 1. Set to 0 width and remove border for a slider without a thumb
@@ -98,35 +100,46 @@ input[type="range"] {
   -webkit-appearance: none;
   width: 20px;
   /* 1 */
-  height: 40px;
-  background: #37D500;
-  box-shadow: -100vw 0 0 100vw  #37D500;
+  height: 20px;
+  background-color: #37D500;
+  box-shadow: -100vw 0 0 100vw #37D500;
   border: 15px solid white;
   /* 1 */
-  border-width: 5px; }
+  border-width: 5px;
+  border-radius: 50% !important;
+}
 
 ::-moz-range-track {
-  height: 40px;
-  background: #ddd; }
+  height: 20px;
+  background: #ddd;
+}
 
 ::-moz-range-thumb {
-  background: #fff;
-  height: 40px;
+  height: 20px;
   width: 20px;
-  border: 3px solid #999;
+  border: 15px solid white;
+  /* 1 */
   border-radius: 50% !important;
-  box-shadow: -100vw 0 0 100vw  #37D500;
-  box-sizing: border-box; }
+  box-shadow: -100vw 0 0 100vw #37D500;
+  box-sizing: border-box;
+  background-color: #37D500;
+  border-width: 5px;
+}
 
 ::-ms-fill-lower {
   background: #37D500; }
 
 ::-ms-thumb {
-  background: #fff;
-  border: 2px solid #999;
-  height: 40px;
+  height: 20px;
   width: 20px;
-  box-sizing: border-box; }
+  border: 15px solid white;
+  /* 1 */
+  border-radius: 50% !important;
+  box-shadow: -100vw 0 0 100vw #37D500;
+  box-sizing: border-box;
+  background-color: #37D500;
+  border-width: 5px;
+}
 
 ::-ms-ticks-after {
   display: none; }
@@ -137,8 +150,9 @@ input[type="range"] {
 ::-ms-track {
   background: #ddd;
   color: transparent;
-  height: 40px;
-  border: none; }
+  height: 20px;
+  border: none;
+}
 
 ::-ms-tooltip {
   display: none; }
