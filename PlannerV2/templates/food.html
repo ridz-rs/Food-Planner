@@ -9,19 +9,9 @@
 </head>
 <body>
     <header>UTM Food Planner</header>
-    {% for food in out %}
-    <ul>
-        <li>
-        {% for vertex in food[loop.index0] %}
-        <ul>
-            <li>{{ vertex.name }}
-            {{ vertex.calories }}
-        </li>
-        </ul>
-        {% endfor %}
-        </li>
+    <ul id="list">
+        
     </ul>
-    {% endfor %}
-    <script src="script.js"></script>
+    <script src="{{ url_for('static', filename='js/render.js') }}"></script>
 </body>
 </html>

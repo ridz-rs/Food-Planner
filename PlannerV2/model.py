@@ -2,6 +2,7 @@ import csv
 import random
 from flask import Flask, request
 from flask.templating import render_template
+from flask import jsonify
 
 app = Flask(__name__)
 
@@ -17,11 +18,16 @@ def food():
     price = float(request.form.get("price"))
     graph = initialize_data()
     tup = ()
-    out = []
+    out_dict = {}
     for i in range(5):
         tup = graph.get_plan(price)
-        out.append(tup)
-    return render_template("food.html", out=out)
+        out_dict["plan{}".format(i+1)] = tup
+
+    return jsonify(out_dict)
+
+@app.route("/plans")
+def plans():
+    return render_template("food.html")
 
 
 class Vertex:
@@ -31,6 +37,14 @@ class Vertex:
         self.price = float(price[1:])
         self.neighbours = []
         self.type = food_type.strip()
+
+    def json_encoder(self):
+        return{
+                'name': self.name,
+                'calories': self.calories,
+                'price': self.price,
+                'type':  self.type
+        }
 
 
 class Edge:
@@ -144,7 +158,7 @@ class Graph:
             if total_price > target_price:
                 break
             prices.append(curr_price)
-
+        plan = [v.json_encoder() for v in plan]
         return plan, prices
 
     def construct_combo(self, dict):
