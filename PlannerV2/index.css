@@ -8,8 +8,7 @@ header {
   font-size: 60px;
   font-family: Jost, sans-serif;
   margin: 0px 0px 0px 0px;
-  padding: 0px;
-}
+  padding: 0px; }
 
 #submit {
   top: 801px;
@@ -25,8 +24,7 @@ header {
   font-family: Jost;
   letter-spacing: 0px;
   color: #FFFFFF;
-  position: absolute;
-}
+  position: absolute; }
 
 #calories {
   top: 236px;
@@ -41,8 +39,7 @@ header {
   opacity: 1;
   position: absolute;
   justify-content: space-between;
-  display: flex;
-}
+  display: flex; }
 
 #budget {
   top: 454px;
@@ -57,22 +54,28 @@ header {
   opacity: 1;
   position: absolute;
   justify-content: space-between;
-  display: flex;
-}
+  display: flex; }
 
 #submit:hover {
-  opacity: 1;
-}
+  opacity: 1; }
 
+#OutputId1 {
+  animation-name: numbers;
+  animation-duration: 2s;
+  animation-iteration-count: 1; }
+
+@keyframes numbers {
+  from {
+    transform: translateY(-10em); }
+  to {
+    transform: translateY(0); } }
 #calorieslider {
   top: 328px;
-  left: 195px;
-}
+  left: 195px; }
 
 #budgetslider {
   top: 546px;
-  left: 195px;
-}
+  left: 195px; }
 
 input[type=range] {
   width: 79.6875%;
@@ -83,8 +86,7 @@ input[type=range] {
   overflow: hidden;
   cursor: pointer;
   border-radius: 15px;
-  /* iOS */
-}
+  /* iOS */ }
 
 ::-webkit-slider-runnable-track {
   background: #ddd;
@@ -125,8 +127,7 @@ input[type=range] {
 }
 
 ::-ms-fill-lower {
-  background: #37D500;
-}
+  background: #37D500; }
 
 ::-ms-thumb {
   height: 20px;
@@ -141,12 +142,10 @@ input[type=range] {
 }
 
 ::-ms-ticks-after {
-  display: none;
-}
+  display: none; }
 
 ::-ms-ticks-before {
-  display: none;
-}
+  display: none; }
 
 ::-ms-track {
   background: #ddd;
@@ -156,8 +155,7 @@ input[type=range] {
 }
 
 ::-ms-tooltip {
-  display: none;
-}
+  display: none; }
 
 #submit {
   transition-property: opacity, border-radius;
