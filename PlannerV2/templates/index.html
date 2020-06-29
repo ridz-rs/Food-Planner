@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <title>UTM Food Planner</title>
+</head>
+<body>
+    <header>UTM Food Planner</header>
+    <!-- <img src="bg.png" alt=""> -->
+    <div id="center">
+        <form id="form" action="{{ url_for('food') }}" method="post">
+            <div id="calories"><span>How many calories?</span> <span><output name="OutputName" id="OutputId1">0</output>cal</span></div>
+            <div>
+                <input type="range" name="calorie" id="calorieslider" min="0" max="2000" value="0" oninput="OutputId1.value = calorieslider.value" class="slider">
+            </div>
+            <div id="budget">How much to spend? <span>$<output name="OutputName" id="OutputId2">0</output></span></div>
+            <div>
+                <input type="range" name="price" id="budgetslider" min="0" max="200" value="0" oninput="OutputId2.value = budgetslider.value" class="slider">
+            </div>
+            <div>
+                <button type="submit" id="submit">Show me meal plans</button>
+            </div>
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

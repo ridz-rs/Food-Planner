@@ -13,8 +13,8 @@ def index():
 
 @app.route("/food", methods=['POST'])
 def food():
-    calorie = request.form.get("calorie")
-    price = request.form.get("price")
+    calorie = float(request.form.get("calorie"))
+    price = float(request.form.get("price"))
     graph = initialize_data()
     tup = ()
     out = []
