@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <title>UTM Food Planner</title>
+</head>
+<body>
+    <header>UTM Food Planner</header>
+    {% for food in out %}
+    <ul>
+        <li>
+        {% for vertex in food[loop.index0] %}
+        <ul>
+            <li>{{ vertex.name }}
+            {{ vertex.calories }}
+        </li>
+        </ul>
+        {% endfor %}
+        </li>
+    </ul>
+    {% endfor %}
+    <script src="script.js"></script>
+</body>
+</html>
