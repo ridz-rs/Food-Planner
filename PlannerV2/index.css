@@ -18,8 +18,8 @@ header {
   height: 142px;
   background: #37D500 0% 0% no-repeat padding-box;
   box-shadow: 0px 3px 6px #00000099;
-  border-radius: 71px;
-  opacity: 0.5;
+  border-radius: 40px;
+  opacity: 0.75;
   text-align: cneter;
   font-size: 50px;
   font-family: Jost;
@@ -64,20 +64,6 @@ header {
   opacity: 1;
 }
 
-#OutputId1 {
-  animation-name: numbers;
-  animation-duration: 2s;
-  animation-iteration-count: 1;
-}
-
-@keyframes numbers {
-  from {
-    transform: translateY(-10em);
-  }
-  to {
-    transform: translateY(0);
-  }
-}
 #calorieslider {
   top: 328px;
   left: 195px;
@@ -171,6 +157,17 @@ input[type=range] {
 
 ::-ms-tooltip {
   display: none;
+}
+
+#submit {
+  transition-property: opacity, border-radius;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in;
+}
+
+#submit:hover {
+  border-radius: 71px;
+  opacity: 1;
 }
 
 /*# sourceMappingURL=index.css.map */
