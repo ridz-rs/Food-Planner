@@ -22,8 +22,8 @@ class timsbot:
                 option.click()
                 sleep(5)
                 options2 = self.driver.find_elements_by_class_name('taggedNutCalCatProd')
+                sleep(5)
                 for option2 in options2:
-                    sleep(5)
                     option2.click()
                     sleep(5)
                     options3 = self.driver.find_elements_by_class_name('taggedNutCalCatProd')
