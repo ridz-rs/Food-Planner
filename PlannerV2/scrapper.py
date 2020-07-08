@@ -2,6 +2,7 @@ from selenium import webdriver
 from time import sleep
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import StaleElementReferenceException
+from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions
@@ -29,34 +30,43 @@ class timsbot:
                 # option.click()
                 sleep(5)
                 options2 = self.driver.find_elements_by_class_name('taggedNutCalCatProd') #[Yeastdonuts,cakedonuts,filleddonuts,other]
+                options2_xpaths = [element.get_attribute("xpath") for element in options2]
+                option2_count = 0
+                print(options2_xpaths)
                 sleep(5)
                 for option2 in options2:
                     to_click = WebDriverWait(self.driver, 20).\
-                        until(expected_conditions.element_to_be_clickable((By.CLASS_NAME, 'taggedNutCalCatProd')))
-                   #  wait.until(expected_conditions.element_to_be_clickable((By.CLASS_NAME, option2.get_attribute("class"))))
+                        until(expected_conditions.element_to_be_clickable((By.XPATH, options2_xpaths[option2_count])))
                     self.driver.execute_script("arguments[0].click()", to_click)
-                    # option2.click()
                     sleep(5)
-                    options3 = self.driver.find_elements_by_class_name('taggedNutCalCatProd')
-                    for option3 in options3:
-                        if length%4==0 and length!=0:
-                            sleep(5)
-                            next_button = self.driver.find_element_by_link_text('Next')
-                            self.driver.execute_script("arguments[0].click()", next_button)
-                        sleep(5)
-                        self.driver.execute_script("arguments[0].click()", option3)
-                        # option3.click()
-                        sleep(5)
+                    options3 = self.driver.find_elements_by_class_name('taggedNutCalCatProd') #[AppleFritter, Chocolate dip, Maple Dip...]
+                    option3 = options3[0]
+                    self.driver.execute_script("arguments[0].click()", option3) # clicks on the donut
+                    next_button = WebDriverWait(self.driver, 10).\
+                        until(expected_conditions.element_to_be_clickable((By.LINK_TEXT, 'Next')))
+                    while(expected_conditions.element_to_be_clickable((By.LINK_TEXT, 'Next'))):
                         self.data_dict[self.driver.find_element_by_id('search-item-title')]=self.driver.find_element_by_id('cal')
-                        self.driver.find_element_by_xpath('/html/body/div[2]/div[3]/div[2]/div/div[1]/img').click()
+                        # loads donut data in data_dict
+                        self.driver.execute_script("arguments[0].click()", next_button)
                         sleep(5)
-                        length = len(list(self.data_dict.keys()))
-                        print(length)
+                        try:
+                            next_button = WebDriverWait(self.driver, 10).\
+                            until(expected_conditions.element_to_be_clickable((By.LINK_TEXT, 'Next')))
+                        except TimeoutException:
+                            break
+                    self.data_dict[self.driver.find_element_by_id('search-item-title')]=self.driver.find_element_by_id('cal')
+                    self.driver.find_element_by_xpath('/html/body/div[2]/div[3]/div[2]/div/div[1]/img').click() # closes donut page
+                    sleep(5)
+                    length = len(list(self.data_dict.keys()))
+                    print(length)
                     back_button = self.driver.find_element_by_xpath('/html/body/div[2]/div[3]/div[1]/div[6]/div[2]/div/div[2]/div/a')
                     self.driver.execute_script("arguments[0].click()", back_button)
+                    options2 = options2[1:]
+                    option2_count += 1
                     sleep(5)
                 back_button = self.driver.find_element_by_xpath('/html/body/div[2]/div[3]/div[1]/div[6]/div[2]/div/div[2]/div/a')
                 self.driver.execute_script("arguments[0].click()", back_button)
+                options1 = options1[1:]
                 sleep(5)    
             back_button = self.driver.find_element_by_xpath('/html/body/div[2]/div[3]/div[1]/div[6]/div[2]/div/div[2]/div/a')
             self.driver.execute_script("arguments[0].click()", back_button)
