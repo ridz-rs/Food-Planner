@@ -30,13 +30,15 @@ class timsbot:
                 # option.click()
                 sleep(5)
                 options2 = self.driver.find_elements_by_class_name('taggedNutCalCatProd') #[Yeastdonuts,cakedonuts,filleddonuts,other]
-                options2_xpaths = [element.get_attribute("xpath") for element in options2]
+                # inner_options2 = [opt.find_element_by_class_name('section-title-legacy category-title') for opt in options2]
+                inner_option2texts = [opt.text for opt in options2]
+                # options2_xpaths = [element.get_attribute("xpath") for element in options2]
                 option2_count = 0
-                print(options2_xpaths)
+                print(inner_option2texts)
                 sleep(5)
                 for option2 in options2:
                     to_click = WebDriverWait(self.driver, 20).\
-                        until(expected_conditions.element_to_be_clickable((By.XPATH, options2_xpaths[option2_count])))
+                        until(expected_conditions.element_to_be_clickable((By.XPATH, "//*[contains(text(),'{}')]".format(inner_option2texts[option2_count]))))
                     self.driver.execute_script("arguments[0].click()", to_click)
                     sleep(5)
                     options3 = self.driver.find_elements_by_class_name('taggedNutCalCatProd') #[AppleFritter, Chocolate dip, Maple Dip...]
