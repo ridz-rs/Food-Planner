@@ -9,10 +9,8 @@ from selenium.webdriver.support import expected_conditions
 
 class timsbot:
     def __init__(self):
-        print("starts init")
         self.driver = webdriver.Chrome(executable_path="C:/Users/Riddhesh/Downloads/chromedriver_win32/chromedriver.exe")
         self.driver.get("https://company.timhortons.com/ca/en/menu/nutrition-and-wellness.php")
-        print("completes init")
         # self.driver.fullscreen_window()
         sleep(2)
         self.data_dict = {}
@@ -25,21 +23,32 @@ class timsbot:
         #     sleep(5)
             length = 0
             options1 = self.driver.find_elements_by_class_name('taggedNutCalCatProd') # [donuts,timbits,muffins,bakedgoods]
+            option1texts = [opt.text for opt in options1]
+            print(option1texts)
+            options1_count = 0
             for option in options1:
-                self.driver.execute_script("arguments[0].click()", option)
+                # to_click1 = WebDriverWait(self.driver, 20).until(expected_conditions.element_to_be_clickable((By.XPATH, "//*[contains(text(), 'Muffins')]")))
+                try:
+                    print("goes in 1st try")
+                    to_click1 = WebDriverWait(self.driver, 10).\
+                        until(expected_conditions.element_to_be_clickable((By.XPATH, '//div[contains(text(),\"{0}\")]'\
+                            .format(option1texts[options1_count]))))
+                    self.driver.execute_script("arguments[0].click()", to_click1)
+                except TimeoutException:
+                    to_click = self.driver.find_element_by_xpath("//div[contains(text(), \'{}\')]".format(option1texts[options1_count]))
+                    print(to_click.text)
                 # option.click()
                 sleep(5)
                 options2 = self.driver.find_elements_by_class_name('taggedNutCalCatProd') #[Yeastdonuts,cakedonuts,filleddonuts,other]
-                # inner_options2 = [opt.find_element_by_class_name('section-title-legacy category-title') for opt in options2]
                 inner_option2texts = [opt.text for opt in options2]
-                # options2_xpaths = [element.get_attribute("xpath") for element in options2]
-                option2_count = 0
                 print(inner_option2texts)
+                option2_count = 0
                 sleep(5)
                 for option2 in options2:
-                    to_click = WebDriverWait(self.driver, 20).\
-                        until(expected_conditions.element_to_be_clickable((By.XPATH, "//*[contains(text(),'{}')]".format(inner_option2texts[option2_count]))))
-                    self.driver.execute_script("arguments[0].click()", to_click)
+                    to_click2 = WebDriverWait(self.driver, 20).\
+                        until(expected_conditions.element_to_be_clickable((By.XPATH, "//div[contains(text(),\'{}\')]"\
+                            .format(inner_option2texts[option2_count]))))
+                    self.driver.execute_script("arguments[0].click()", to_click2)
                     sleep(5)
                     options3 = self.driver.find_elements_by_class_name('taggedNutCalCatProd') #[AppleFritter, Chocolate dip, Maple Dip...]
                     option3 = options3[0]
@@ -63,12 +72,13 @@ class timsbot:
                     print(length)
                     back_button = self.driver.find_element_by_xpath('/html/body/div[2]/div[3]/div[1]/div[6]/div[2]/div/div[2]/div/a')
                     self.driver.execute_script("arguments[0].click()", back_button)
-                    options2 = options2[1:]
+                    # options2 = options2[1:]
                     option2_count += 1
                     sleep(5)
                 back_button = self.driver.find_element_by_xpath('/html/body/div[2]/div[3]/div[1]/div[6]/div[2]/div/div[2]/div/a')
                 self.driver.execute_script("arguments[0].click()", back_button)
-                options1 = options1[1:]
+                # options1 = options1[1:]
+                options1_count += 1 
                 sleep(5)    
             back_button = self.driver.find_element_by_xpath('/html/body/div[2]/div[3]/div[1]/div[6]/div[2]/div/div[2]/div/a')
             self.driver.execute_script("arguments[0].click()", back_button)
