@@ -19,11 +19,11 @@ class timsbot:
             length = 0
             options1 = self.driver.find_elements_by_class_name('taggedNutCalCatProd') # [donuts,timbits,muffins,bakedgoods]
             option1texts = [opt.text for opt in options1]
-            print(option1texts)
             options1_count = 0
             for option in options1:
-                try:
-                    print("goes in 1st try")
+                self.check_arrow(options1_count)
+                print("Line 24: ", option1texts, options1_count)
+                try:  # wait until the category is clickable
                     to_click1 = WebDriverWait(self.driver, 10).\
                         until(expected_conditions.element_to_be_clickable((By.XPATH, '//div[contains(text(),\"{0}\")]'\
                             .format(option1texts[options1_count]))))
@@ -31,14 +31,15 @@ class timsbot:
                 except TimeoutException:
                     to_click = self.driver.find_element_by_xpath("//div[contains(text(), \'{}\')]".format(option1texts[options1_count]))
                     print(to_click.text)
-                # option.click()
+                    exit()
                 sleep(5)
                 options2 = self.driver.find_elements_by_class_name('taggedNutCalCatProd') #[Yeastdonuts,cakedonuts,filleddonuts,other]
                 inner_option2texts = [opt.text for opt in options2]
-                print(inner_option2texts)
                 option2_count = 0
                 sleep(5)
                 for option2 in options2:
+                    self.check_arrow(option2_count)
+                    print("Line 39: ", inner_option2texts, option2_count)
                     try:
                         to_click2 = WebDriverWait(self.driver, 20).\
                             until(expected_conditions.element_to_be_clickable((By.XPATH, "//div[contains(text(),\'{}\')]"\
@@ -46,14 +47,12 @@ class timsbot:
                     except TimeoutException:
                         to_click = self.driver.find_element_by_xpath("//div[contains(text(), \'{}\')]".format(inner_option2texts[option2_count]))
                         print(to_click.text)
+                        exit()
                     self.driver.execute_script("arguments[0].click()", to_click2)
                     sleep(5)
-                    """
-                        TODO: call read_inner_options() appropriately when the opened page is the innermost one
-                    """
                     is_deepest = True
                     try:
-                        self.driver.find_element_by_xpath('/html/body/div[2]/div[3]/div[2]/div/div[1]/img').click()
+                        self.driver.find_element_by_xpath('/html/body/div[2]/div[3]/div[2]/div/div[1]/img').click() # check if it has a page to close
                     except:
                         print("excepts!")
                         is_deepest = False
@@ -106,7 +105,14 @@ class timsbot:
         self.driver.find_element_by_xpath('/html/body/div[2]/div[3]/div[2]/div/div[1]/img').click() # closes donut page
         sleep(5)
         length = len(list(self.data_dict.keys()))
-        print(length)        
+        print(length)   
+
+    def check_arrow(self, num_completed):
+        if num_completed==3:
+            try:
+                self.driver.find_element_by_class_name("bx-next").click()
+            except:
+                print("Could not find next arrow")
 
         
 bot = timsbot()
