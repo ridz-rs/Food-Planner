@@ -20,7 +20,7 @@ def food():
     tup = ()
     out_dict = {}
     for i in range(5):
-        tup = graph.get_plan(price)
+        tup = graph.get_plan(price, calorie)
         out_dict["plan{}".format(i+1)] = tup
 
     return jsonify(out_dict)
@@ -138,10 +138,11 @@ class Graph:
                 quantity_covered += 1
         return ret
 
-    def get_plan(self, target_price):
+    def get_plan(self, target_price, target_calories):
         plan = []
         prices = []
         total_price = 0
+        total_calories = 0
         start = random.randint(0, self.num_vertices-1)
         while self.adj_list[start] in plan:
             start = random.randint(0, self.num_vertices - 1)
@@ -149,7 +150,7 @@ class Graph:
         curr_price = curr.price
         prices.append(curr_price)
         total_price += curr_price
-        while total_price < target_price:
+        while total_price < target_price and total_calories<target_calories:
             plan.append(curr)
             total_price += curr_price
             temp_edge = self.get_min_neighbour(curr)
