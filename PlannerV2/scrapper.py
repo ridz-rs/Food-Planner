@@ -50,11 +50,11 @@ class timsbot:
                         to_click = self.driver.find_element_by_xpath("//div[contains(text(), \'{}\')]".format(inner_option2texts[option2_count]))
                         print(to_click.text)
                         exit()
-                    self.driver.execute_script("arguments[0].click()", to_click2)
+                    self.driver.execute_script("arguments[0].click()", to_click2) # clicks on Yeastdonuts
                     sleep(3)
                     is_deepest = True
                     try:
-                        self.driver.find_element_by_xpath('/html/body/div[2]/div[3]/div[2]/div/div[1]/img').click() # check if it has a page to close
+                        self.driver.find_element_by_xpath('/html/body/div[2]/div[3]/div[2]/div/div[1]/img').click() # check if it has a page to close which indicates it's on the final item page
                     except:
                         print("excepts!")
                         is_deepest = False
@@ -101,9 +101,26 @@ class timsbot:
                         ((By.XPATH, '/html/body/div[2]/div[3]/div[2]/div/div[1]/img')))
                 close_button.click()
             return None
-        next_button = WebDriverWait(self.driver, 10).\
-            until(expected_conditions.element_to_be_clickable((By.LINK_TEXT, 'Next')))
-        while(expected_conditions.element_to_be_clickable((By.LINK_TEXT, 'Next'))):
+        try:
+            next_button = WebDriverWait(self.driver, 10).\
+                until(expected_conditions.element_to_be_clickable((By.LINK_TEXT, 'Next')))
+        except TimeoutException:
+            next_button = None
+            try:
+                options4 = self.driver.find_element_by_class_name('taggedNutCalCatProd')
+                options4texts = [option.text for option in options4]
+                options4_count = 0
+                for option in options4:
+                    to_click = WebDriverWait(self.driver, 10).\
+                        until(expected_conditions.element_to_be_clickable\
+                            ((By.XPATH, "//div[contains(text(), \'{}\')]".format(options4texts[options4_count]))))
+                    self.read_inner_items()
+                    options4_count += 1
+            except:
+                print("Recursion failure")
+        for i in range(len(options3)):
+            next_button = WebDriverWait(self.driver, 10).\
+                until(expected_conditions.element_to_be_clickable((By.LINK_TEXT, 'Next')))
             self.data_dict[self.driver.find_element_by_id('search-item-title')]=self.driver.find_element_by_id('cal')
             # loads donut data in data_dict
             self.driver.execute_script("arguments[0].click()", next_button)
