@@ -8,164 +8,128 @@ header {
   font-size: 60px;
   font-family: Jost, sans-serif;
   margin: 0px 0px 0px 0px;
-  padding: 0px; }
+  padding: 0px;
+}
+
+#calories {
+  top: 21%;
+  left: 10%;
+  width: 79.6875%;
+  height: 15%;
+  text-align: left;
+  font-size: 320%;
+  font-family: Jost;
+  letter-spacing: 0%;
+  color: black;
+  opacity: 1;
+  position: absolute;
+  justify-content: space-between;
+  display: flex;
+}
+
+#calorieslider {
+  top: 38%;
+  overflow: hidden;
+  width: 79.6875%;
+  height: 6%;
+  left: 10%;
+  display: flex;
+  position: absolute;
+}
+
+#budget {
+  top: 53%;
+  left: 10%;
+  width: 79.6875%;
+  height: 15%;
+  text-align: left;
+  font-size: 320%;
+  font-family: Jost;
+  letter-spacing: 0%;
+  color: #000000;
+  opacity: 1;
+  position: absolute;
+  justify-content: space-between;
+  display: flex;
+}
+
+#budgetslider {
+  top: 70%;
+  width: 79.6875%;
+  height: 6%;
+  left: 10%;
+  display: flex;
+  position: absolute;
+}
 
 #submit {
-  top: 801px;
-  left: 625px;
-  width: 671px;
-  height: 142px;
+  width: 40%;
+  height: 14%;
+  top: 85%;
+  bottom: 5%;
+  left: 30%;
   background: #37D500 0% 0% no-repeat padding-box;
-  box-shadow: 0px 3px 6px #00000099;
-  border-radius: 40px;
+  box-shadow: 0px 3px 6px #6e6b6b5d;
+  border-radius: 30px;
   opacity: 0.75;
-  text-align: cneter;
-  font-size: 50px;
+  text-align: center;
+  font-size: 300%;
   font-family: Jost;
   letter-spacing: 0px;
   color: #FFFFFF;
-  position: absolute; }
-
-#calories {
-  top: 236px;
-  left: 195px;
-  width: 79.6875%;
-  height: 50px;
-  text-align: left;
-  font-size: 50px;
-  font-family: Jost;
-  letter-spacing: 0px;
-  color: #000000;
-  opacity: 1;
   position: absolute;
-  justify-content: space-between;
-  display: flex; }
-
-#budget {
-  top: 454px;
-  left: 194px;
-  width: 79.6875%;
-  height: 68px;
-  text-align: left;
-  font-size: 50px;
-  font-family: Jost;
-  letter-spacing: 0px;
-  color: #000000;
-  opacity: 1;
-  position: absolute;
-  justify-content: space-between;
-  display: flex; }
-
-#submit:hover {
-  opacity: 1; }
-
-#OutputId1 {
-  animation-name: numbers;
-  animation-duration: 2s;
-  animation-iteration-count: 1; }
-
-@keyframes numbers {
-  from {
-    transform: translateY(-10em); }
-  to {
-    transform: translateY(0); } }
-#calorieslider {
-  top: 328px;
-  left: 195px; }
-
-#budgetslider {
-  top: 546px;
-  left: 195px; }
-
-input[type=range] {
-  width: 79.6875%;
-  height: 20px;
-  margin: auto;
-  -webkit-appearance: none;
-  position: absolute;
-  overflow: hidden;
-  cursor: pointer;
-  border-radius: 15px;
-  /* iOS */ }
-
-::-webkit-slider-runnable-track {
-  background: #ddd;
-  height: 20px;
-}
-
-/*
- * 1. Set to 0 width and remove border for a slider without a thumb
- */
-::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 20px;
-  /* 1 */
-  height: 20px;
-  background-color: #37D500;
-  box-shadow: -100vw 0 0 100vw #37D500;
-  border: 15px solid white;
-  /* 1 */
-  border-width: 5px;
-  border-radius: 50% !important;
-}
-
-::-moz-range-track {
-  height: 20px;
-  background: #ddd;
-}
-
-::-moz-range-thumb {
-  height: 20px;
-  width: 20px;
-  border: 15px solid white;
-  /* 1 */
-  border-radius: 50% !important;
-  box-shadow: -100vw 0 0 100vw #37D500;
-  box-sizing: border-box;
-  background-color: #37D500;
-  border-width: 5px;
-}
-
-::-ms-fill-lower {
-  background: #37D500; }
-
-::-ms-thumb {
-  height: 20px;
-  width: 20px;
-  border: 15px solid white;
-  /* 1 */
-  border-radius: 50% !important;
-  box-shadow: -100vw 0 0 100vw #37D500;
-  box-sizing: border-box;
-  background-color: #37D500;
-  border-width: 5px;
-}
-
-::-ms-ticks-after {
-  display: none; }
-
-::-ms-ticks-before {
-  display: none; }
-
-::-ms-track {
-  background: #ddd;
-  color: transparent;
-  height: 20px;
-  border: none;
-}
-
-::-ms-tooltip {
-  display: none; }
-
-#submit {
   transition-property: opacity, border-radius;
   transition-duration: 0.5s;
   transition-timing-function: ease-in;
 }
 
 #submit:hover {
-  border-radius: 71px;
   opacity: 1;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  input[type=range] {
+    overflow: hidden;
+    -webkit-appearance: none;
+    background-color: #ddd;
+    border-radius: 15px;
+    /* iOS */
+  }
+
+  input[type=range]::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
+    color: #37D500;
+  }
+
+  ::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 30px;
+    /* 1 */
+    height: 30px;
+    background-color: #37D500;
+    box-shadow: -79.6875% 0 0 79.6875% black;
+    border: 15px solid white;
+    /* 1 */
+    border-width: 3px;
+    border-radius: 50% !important;
+  }
+}
+/** FF*/
+input[type=range]::-moz-range-progress {
+  background-color: #37d500;
+}
+
+input[type=range]::-moz-range-track {
+  background-color: #ddd;
+}
+
+/* IE*/
+input[type=range]::-ms-fill-lower {
+  background-color: #37d500;
+}
+
+input[type=range]::-ms-fill-upper {
+  background-color: #ddd;
 }
 
 /*# sourceMappingURL=index.css.map */

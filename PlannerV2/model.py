@@ -2,10 +2,11 @@ import csv
 import random
 from flask import Flask, request
 from flask.templating import render_template
+from flask_scss import Scss
 from flask import jsonify
 
 app = Flask(__name__)
-
+Scss(app, static_dir='static', asset_dir='static/css')
 
 @app.route("/")
 def index():

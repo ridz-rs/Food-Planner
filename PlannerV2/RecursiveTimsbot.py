@@ -6,6 +6,7 @@ from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions
+import csv, traceback
 
 class timsbot:
     def __init__(self):
@@ -14,13 +15,16 @@ class timsbot:
         sleep(2)
         self.data_dict = {}
     
-    def data_surfer(self):
+    def data_surfer(self, depth=0):
         sleep(2)
         is_deepest = False
         try:  # base case
-            self.driver.find_element_by_xpath('/html/body/div[2]/div[3]/div[2]/div/div[1]/img').click()
+            close_button = self.driver.find_element_by_xpath('/html/body/div[2]/div[3]/div[2]/div/div[1]/img')
+            self.driver.execute_script("arguments[0].click()", close_button)
+            print("  "*depth, "Try works")
             is_deepest = True
         except:
+            is_deepest = False
             options = self.driver.find_elements_by_class_name('taggedNutCalCatProd')
             option_texts = [opt.text for opt in options]
             for i in range(len(option_texts)):
@@ -28,23 +32,23 @@ class timsbot:
                 sleep(2)
                 options = self.driver.find_elements_by_class_name('taggedNutCalCatProd') #get categories after scrolling
                 option_texts = [opt.text for opt in options]
-                print(option_texts[i], i, len(option_texts))
-                sleep(2)
+                print("  "*depth, option_texts[i], i, len(option_texts))
                 try:
                     to_click = WebDriverWait(self.driver, 10)\
                         .until(expected_conditions.element_to_be_clickable\
                             ((By.XPATH, '//div[contains(text(),\"{0}\")]'.format(option_texts[i]))))
                     self.driver.execute_script("arguments[0].click()", to_click) # click on category
                     try:
-                        print("recurses")
-                        to_break = self.data_surfer() # carries out the same code for inner categories
+                        print("  "*depth,"recurses")
+                        to_break = self.data_surfer(depth+1) # carries out the same code for inner categories
                         if to_break:
-                            print("breaks", option_texts)
+                            print("  "*depth+ "breaks", option_texts)
                             break
                     except Exception as e:
                         print("error at", option_texts[i])
                         print(e)
-                        exit()
+                        traceback.print_exc()
+                        break
                 except Exception as e:
                     print("could not click")
                     print(e)
@@ -57,10 +61,10 @@ class timsbot:
             except:
                 print("no back button")
                 return False
-            print("Goes in outermost except")
         finally:
             if is_deepest:
                 self.read_inner_elements()
+                is_deepest = False
                 return True
 
     
@@ -89,12 +93,20 @@ class timsbot:
                     (expected_conditions.element_to_be_clickable((By.LINK_TEXT,'Next')))
             except TimeoutException:
                 print("could not find next button")
-                self.data_dict[self.driver.find_element_by_id('search-item-title').text] = self.driver.find_element_by_id('cal').text
-                self.driver.find_element_by_xpath('/html/body/div[2]/div[3]/div[2]/div/div[1]/img').click() # closes donut page
+                k = self.driver.execute_script("return arguments[0].textContent", self.driver.find_element_by_id('search-item-title'))
+                v = self.driver.find_element_by_id('cal').text
+                self.data_dict[k] = v
+                close_button = self.driver.find_element_by_xpath('//*[@id="si-close"]/img')
+                self.driver.execute_script("arguments[0].click()", close_button)
+                sleep(2)
                 length = len(list(self.data_dict.keys()))
-                print(length)
+                print("num of keys are ",length)
                 return None
-            self.data_dict[self.driver.find_element_by_id('search-item-title').text]=self.driver.find_element_by_id('cal').text
+            # k= self.driver.find_element_by_id('search-item-title')
+            k = self.driver.execute_script("return arguments[0].textContent", self.driver.find_element_by_id('search-item-title'))
+            v = self.driver.find_element_by_id('cal').text
+            self.data_dict[k] = v
+            length = len(list(self.data_dict.keys()))
             # loads donut data in data_dict
             if next_button is not None:
                 self.driver.execute_script("arguments[0].click()", next_button)
@@ -105,14 +117,17 @@ bot = timsbot()
 try:
     bot.data_surfer()
 except Exception as e:
-    print(e)   
+    print(e)
+    traceback.print_exc()
 print(bot.data_dict)
 try:
-    with open('TimsData.csv', 'a') as fd:
-        for key in self.data_dict:
-            fd.writelines([key, '', self.data_dict[key]])
+    with open('TimsData.csv', 'w') as fd:
+        writer = csv.writer(fd)
+        for key in bot.data_dict:
+            writer.writerow([key, '', bot.data_dict[key]])
 except Exception as e:
     print('Writing error')
     print(e)
+    traceback.print_exc()
 
 
