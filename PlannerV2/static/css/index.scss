@@ -1,16 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Jost:wght@300&display=swap');
 
-header {
-    text-align: center;
-    background: #37D500 0% 0% no-repeat padding-box;
-    color: white;
-    line-height: 70px;
-    padding: 20px 10px;
-    font-size: 60px;
-    font-family: Jost, sans-serif;
-    margin: 0px 0px 0px 0px;
-    padding: 0px;
-}
 
 #calories {
   top: 21%;
@@ -29,9 +18,8 @@ header {
 }
 #calorieslider {
     top: 38%;
-    overflow: hidden;
     width: 79.6875%;
-    height: 6%;
+    height: 1%;
     left: 10%;
     display: flex;
     position: absolute;
@@ -56,7 +44,7 @@ header {
 #budgetslider {
     top: 70%;
     width: 79.6875%;
-    height: 6%;
+    height: 1%;
     left: 10%;
     display: flex;
     position: absolute;
@@ -68,17 +56,18 @@ header {
     top: 85%;
     bottom: 5%;
     left: 30%;
-    background: #37D500 0% 0% no-repeat padding-box;
-    box-shadow: 0px 3px 6px #6e6b6b5d;
-    border-radius: 30px;
-    opacity: 0.75;
+    background: #37D500;
+    border-color: #37D500;
+    box-shadow: -1px 4px 3px grey;
+    border-radius: 71px;
+    opacity: 0.50;
     text-align: center;
     font-size: 300%;
     font-family: Jost;
     letter-spacing: 0px;
     color: #FFFFFF;
     position: absolute;
-    transition-property: opacity, border-radius;
+    transition-property: opacity;
     transition-duration: 0.5s;
     transition-timing-function: ease-in;
 }
@@ -88,7 +77,7 @@ header {
 }
 @media screen and (-webkit-min-device-pixel-ratio:0) {
 input[type="range"] { 
-    overflow: hidden;
+    // overflow: hidden;
     -webkit-appearance: none;
     background-color: #ddd;
     border-radius: 15px; /* iOS */
@@ -103,8 +92,9 @@ input[type="range"]::-webkit-slider-runnable-track {
     -webkit-appearance: none;
     width: 30px; /* 1 */
     height: 30px;
+    box-shadow:-1px 3px 5px grey;
     background-color: #37D500; //inner circle colour
-    box-shadow: -79.6875% 0 0 79.6875% black;
+    // box-shadow: -79.6875% 0 0 79.6875% black;
     border: 15px solid white; /* 1 */
     border-width: 3px;
     border-radius: 50% !important;
