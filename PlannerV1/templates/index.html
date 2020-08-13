@@ -10,7 +10,7 @@
 <body>
     <!-- <header>UTM Food Planner</header> -->
     <div id="center">
-        <form id="form" action="{{ url_for('food') }}" method="post">
+        <form id="form" action="{{ url_for('food') }}" method="POST">
             <div id="calories"><span>How many calories?</span> <span><output name="OutputName" id="OutputId1">0</output>cal</span></div>
             <div>
                 <input type="range" name="calorie" id="calorieslider" min="0" max="2000" value="0" oninput="OutputId1.value = calorieslider.value" class="slider">
