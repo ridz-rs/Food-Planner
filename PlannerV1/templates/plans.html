@@ -9,9 +9,17 @@
 </head>
 <body>
     <!-- <header>UTM Food Planner</header> -->
-    <ul id="list">
-        
-    </ul>
-    <script src="{{ url_for('static', filename='js/render.js') }}"></script>
+    {% for plan in plans %}
+        <h1>Start of plan</h1>
+        {% for item in plan %}
+            <div class="container" id="plan_container">
+                <div class="container" id="image_container"> 
+                    <img src={{item.img_path}} alt="food_image" height="50px">
+                </div>
+            </div>
+        {% endfor %}
+        <h1>End of plan</h1>
+    {% endfor %}
+    <!-- <script src="{{ url_for('static', filename='js/render.js') }}"></script> -->
 </body>
 </html>
