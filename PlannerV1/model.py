@@ -6,45 +6,44 @@ from flask_scss import Scss
 from flask import jsonify
 
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = 'static/image_folder'
 Scss(app, static_dir='static', asset_dir='static/css')
 
-@app.route("/")
+@app.route("/", methods=['GET', 'POST'])
 def index():
     return render_template("index.html")
 
 
-@app.route("/food", methods=['POST'])
-def food():
+@app.route("/plans", methods=['GET', 'POST'])
+def plans():
     calorie = float(request.form.get("calorie"))
     price = float(request.form.get("price"))
     graph = initialize_data()
     tup = ()
+    plans =[]
     out_dict = {}
     for i in range(5):
-        tup = graph.get_plan(price, calorie)
-        out_dict["plan{}".format(i+1)] = tup
-
-    return jsonify(out_dict)
-
-@app.route("/plans")
-def plans():
-    return render_template("food.html")
+        plans.append(graph.get_plan(price, calorie))
+    return render_template("plans.html", plans=plans)
 
 
 class Vertex:
-    def __init__(self, name, calories=None, price=None, food_type=None):
+    def __init__(self, name, calories=None, price=None, food_type=None, genre=None):
         self.name = name
         self.calories = float(calories)
         self.price = float(price[1:])
         self.neighbours = []
         self.type = food_type.strip()
+        self.genre = genre
+        self.img_path = "static/image_folder/sushi.png"
 
     def json_encoder(self):
         return{
                 'name': self.name,
                 'calories': self.calories,
                 'price': self.price,
-                'type':  self.type
+                'type':  self.type,
+                'img_path': self.img_path
         }
 
 
@@ -140,6 +139,12 @@ class Graph:
         return ret
 
     def get_plan(self, target_price, target_calories):
+        """
+
+        Returns 5 food plans. 
+
+        :return: ([json], [float])
+        """
         plan = []
         prices = []
         total_price = 0
@@ -161,7 +166,7 @@ class Graph:
                 break
             prices.append(curr_price)
         plan = [v.json_encoder() for v in plan]
-        return plan, prices
+        return plan
 
     def construct_combo(self, dict):
         """
@@ -226,3 +231,5 @@ def initialize_data():
     return graph
     # graph.display()
 
+if __name__=="__main__":
+    app.run(debug=1)
