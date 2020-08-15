@@ -1,0 +1,31 @@
+#plan_container {
+  display: flex;
+  flex-direction: row;
+  border: 25%;
+  border-style: solid;
+  border-width: 50%;
+  border-color: black;
+  height: 5%;
+  width: 95%;
+  padding: 1% 1% 1% 1%;
+  position: relative;
+  orientation: landscape;
+}
+
+#image_container {
+  display: inline-block;
+  border-style: double;
+  border-width: 50%;
+  height: 5%;
+  width: 30%;
+  padding: 1% 1% 1% 1%;
+  border-color: grey;
+  position: relative;
+  object-fit: cover;
+}
+
+h1 {
+  color: green;
+}
+
+/*# sourceMappingURL=planstyles.css.map */
