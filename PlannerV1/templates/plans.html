@@ -8,16 +8,24 @@
     <title>UTM Food Planner</title>
 </head>
 <body>
-    <!-- <header>UTM Food Planner</header> -->
-    {% for plan in plans %}
-        <div class="container" id="plan_container">
-        {% for item in plan %}
-            <div class="container" id="image_container"> 
-                <img src={{item.img_path}} alt="food_image" height="50px">
+    <button onclick="history.back()" id="back_button"><</button>
+    <p id="result_count"> {{ total_results }} search results...</p>
+    <div id="results">
+        {% for plan in plans %}
+            <div class="container" id="detail_container">
+                <p id="location_count">n locations</p>
+                <div class="container" id="plan_container">
+                    {% for item in plan %}
+                        <img src={{item.img_path}} alt="food_image" id="food_img">
+                    {% endfor %}
+                </div>
+                <p id="calories"> {{ total_calories[loop.index-1] }} calories</p>
+                <div id="bottom_line">
+                    <p id="price"> ${{ prices[loop.index-1] }}</p>
+                    <a href="{{ url_for('details', _anchor='#learn_more', plan=plan) }}" id="learn_more"> Learn More > </a>
+                </div>  
             </div>
         {% endfor %}
-        </div>
-    {% endfor %}
-    <!-- <script src="{{ url_for('static', filename='js/render.js') }}"></script> -->
+    </div>
 </body>
 </html>

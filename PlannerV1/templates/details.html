@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Plan Details</title>
+        {% for item in items %}
+        <h1> {{ item.name }}</h1>
+        <h2> {{ item.price }}
+             {{ item.calories }}
+        </h2>
+        {% endfor %}
+    </head>
+</html>

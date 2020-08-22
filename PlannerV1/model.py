@@ -1,7 +1,6 @@
-import csv
-import random
+import csv, random, ast
 from flask import Flask, request
-from flask.templating import render_template, url_for
+from flask.templating import render_template
 from flask_scss import Scss
 from flask import jsonify
 
@@ -14,18 +13,29 @@ def index():
     return render_template("index.html")
 
 
-@app.route("/plans", methods=['GET', 'POST'])
+@app.route("/plans", methods=['POST'])
 def plans():
     calorie = float(request.form.get("calorie"))
     price = float(request.form.get("price"))
     graph = initialize_data()
+    plan_lst = []
+    price_lst = []
+    calorie_lst = []
     tup = ()
-    plans =[]
-    out_dict = {}
     for i in range(5):
-        plans.append(graph.get_plan(price, calorie))
-    return render_template("plans.html", plans=plans)
+        tup = graph.get_plan(price, calorie)
+        plan_lst.append(tup[0])
+        price_lst.append(round(sum(tup[1]),2))
+        calorie_lst.append(sum([item['calories'] for item in plan_lst[i]]))
+    print(calorie_lst)
+    return render_template("plans.html", plans=plan_lst, prices=price_lst,\
+        total_results = len(plan_lst), total_calories = calorie_lst)
 
+@app.route("/details", methods=['GET', 'POST'])
+def details():
+    plan = request.args.getlist('plan', None)
+    item_lst = [ast.literal_eval(item) for item in plan]
+    return render_template("details.html", items = item_lst)
 
 class Vertex:
     def __init__(self, name, calories=None, price=None, food_type=None, genre=None):
@@ -159,14 +169,18 @@ class Graph:
         while total_price < target_price and total_calories<target_calories:
             plan.append(curr)
             total_price += curr_price
+            total_calories += curr.calories
             temp_edge = self.get_min_neighbour(curr)
             curr = temp_edge.destination
             curr_price = curr.price - temp_edge.discount
-            if total_price > target_price:
+            if total_price > target_price or total_calories>target_calories:
+                plan.pop()
+                total_price -= curr_price
+                total_calories -= curr.calories
                 break
             prices.append(curr_price)
         plan = [v.json_encoder() for v in plan]
-        return plan
+        return plan, prices
 
     def construct_combo(self, dict):
         """
