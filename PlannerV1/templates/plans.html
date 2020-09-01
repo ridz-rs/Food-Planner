@@ -13,7 +13,7 @@
     <div id="results">
         {% for plan in plans %}
             <div class="container" id="detail_container">
-                <p id="location_count">n locations</p>
+                <p id="location_count">{{ num_location_lst[loop.index-1] }} location(s)</p>
                 <div class="container" id="plan_container">
                     {% for item in plan %}
                         <img src={{item.img_path}} alt="food_image" id="food_img">

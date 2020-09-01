@@ -1,14 +1,17 @@
 import random
 
 class Vertex:
-    def __init__(self, name, calories=None, price=None, food_type=None, genre=None):
+    def __init__(self, name, calories, price=None, food_type=None, size=None ,genre=None, location=None,img_path=None):
         self.name = name
         self.calories = float(calories)
-        self.price = float(price[1:])
+        self.price = float(price.strip('$'))
         self.neighbours = []
         self.type = food_type.strip()
         self.genre = genre
-        self.img_path = "static/image_folder/sushi.png"
+        self.size = size
+        self.location=location
+        self.img_path = img_path
+        self.label = self.name+self.type+self.location
 
     def json_encoder(self):
         return{
@@ -16,12 +19,13 @@ class Vertex:
                 'calories': self.calories,
                 'price': self.price,
                 'type':  self.type,
-                'img_path': self.img_path
+                'img_path': self.img_path,
+                'location': self.location
         }
 
 
 class Edge:
-    def __init__(self, source, destination, discount=0.0, id=None):
+    def __init__(self, source, destination, discount=0.0, location=None ,id=None):
         self.source = source
         self.destination = destination
         self.discount = float(discount)
@@ -40,7 +44,7 @@ class Graph:
 
     def get(self, label):  # returns the vertex in the graph with the input label
         index = self.hash(label)
-        while self.adj_list[index].name != label:
+        while self.adj_list[index].label != label:
             index += 1
             if index == self.num_vertices:
                 index = 0
@@ -51,7 +55,7 @@ class Graph:
         :param node: Class Vertex
         :return: None
         """
-        index = self.hash(node.name)
+        index = self.hash(node.label)
         while self.adj_list[index] is not None:
             index += 1
             if index == self.num_vertices:
@@ -101,6 +105,13 @@ class Graph:
         return min_neighbours[random.randint(0, len(min_neighbours)-1)]
 
     def find_type_neighbour(self, typ, quantity):
+        """
+            typ: String containing the type wanted
+            quantity: String containing number of typ wanted
+            Returns a list of quantity amount of vertices from the adj_list of the graph
+        """
+        if typ=='-':
+            return []
         quantity_covered = 0
         ret = []
         for v in self.adj_list:
@@ -145,25 +156,28 @@ class Graph:
         plan = [v.json_encoder() for v in plan]
         return plan, prices
 
-    def construct_combo(self, dict):
+    def construct_combo(self, lst):
         """
         constructs a combo by placing edge values between vertices of the graph
-        :param dict: a dictionary {name:{discount: {type:value}}}
+        :param lst: A list of Dictionary with data parameters
         :return: None
-        :precondition: dict has only one name and discount
         """
-        name = list(dict.keys())[0]
-        discount = list(dict[name].keys())[0]
-        targets = []
-        for typ,quantity in dict[name][discount].items():
-            if typ is not '-':
-                targets.extend(self.find_type_neighbour(typ, quantity))
-        for node in self.adj_list:
-            for n in self.adj_list:
-                if n in targets:
-                    node.neighbours.append(Edge(node, n, discount, name))
-                else:
-                    node.neighbours.append(Edge(node, n))
+        for vertex in self.adj_list:
+            for node in self.adj_list:
+                vertex.neighbours.append(Edge(vertex, node))
+            
+        # name = list(dict.keys())[0]
+        # discount = list(dict[name].keys())[0]
+        # targets = []
+        # for typ,quantity in dict[name][discount].items():
+        #     if typ is not '-':
+        #         targets.extend(self.find_type_neighbour(typ, quantity))
+        # for node in self.adj_list:
+        #     for n in self.adj_list:
+        #         if n in targets:
+        #             node.neighbours.append(Edge(node, n, discount, name))
+        #         else:
+        #             node.neighbours.append(Edge(node, n))
 
 
 def show_plan(plan, prices):
@@ -177,34 +191,4 @@ def show_plan(plan, prices):
     print("Total calories: ", total_calories)
     print("===================================================================")
 
-
-def initialize_data():
-    with open("PizzaPizzaData.csv") as db_file:
-        db = csv.reader(db_file)
-        dict_norm = {}
-        dict_comb = {}
-        count = 0
-        num_vex = 0
-        combo = False
-        for row in db:
-            if count != 2:
-                count += 1
-                continue
-            if row[0] == "Combos":
-                combo = True
-                continue
-            if row[0] == "Quantity1":
-                continue
-            if combo:
-                dict_comb.setdefault(row[7], {row[3]: {row[4]: row[0], row[5]: row[1]}})
-            else:
-                dict_norm.setdefault(row[0], [row[1], row[2], row[3]])
-    # print(dict_norm)
-    graph = Graph(len(dict_norm.keys()))
-    for key, value in dict_norm.items():
-        ver = Vertex(key, value[0], value[1], value[2])
-        graph.add_vertex(ver)
-    graph.construct_combo(dict_comb)
-    return graph
-    # graph.display()
 

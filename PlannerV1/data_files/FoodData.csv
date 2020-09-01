@@ -1,0 +1,61 @@
+Name,Calories,Price,Type,Size,Genre,Location,img_path
+Pepperoni Slice,600,$3.99 ,Classic,-,Pizza,PizzaPizza,static/image_folder/pizza.png
+Cheese,510,$3.99 ,Classic ,-,Pizza,PizzaPizza,static/image_folder/pizza.png
+Hawaiian,600,$4.59 ,Premium,-,Pizza,PizzaPizza,static/image_folder/pizza.png
+Chicken,680,$4.59 ,Premium,-,Pizza,PizzaPizza,static/image_folder/pizza.png
+Meat Lovers,670,$4.59 ,Premium,-,Pizza,PizzaPizza,static/image_folder/pizza.png
+Veggie Medley,550,$4.59 ,Premium,-,Pizza,PizzaPizza,static/image_folder/pizza.png
+Super plant,610,$4.59 ,Premium,-,Pizza,PizzaPizza,static/image_folder/pizza.png
+Fountain,300,$3.00 ,Fountain,-,Pizza,PizzaPizza,static/image_folder/pizza.png
+Black Forest Ham,520,$6.49 ,Subway Sandwich Menu,Footlong,Sandwich,Subway,static/image_folder/sub.png
+Black Forest Ham,260,$4.99 ,Subway Sandwich Menu,Six Inch,Sandwich,Subway,static/image_folder/sub.png
+Roast Beef,520,$9.49 ,Subway Sandwich Menu,Footlong,Sandwich,Subway,static/image_folder/sub.png
+Roast Beef,260,$6.29 ,Subway Sandwich Menu,Six Inch,Sandwich,Subway,static/image_folder/sub.png
+Subway Club,540,$9.49 ,Subway Sandwich Menu,Footlong,Sandwich,Subway,static/image_folder/sub.png
+Subway Club,270,$6.29 ,Subway Sandwich Menu,Six Inch,Sandwich,Subway,static/image_folder/sub.png
+Sweet Onion Chicken Teriyaki,660,$8.49 ,Subway Sandwich Menu,Footlong,Sandwich,Subway,static/image_folder/sub.png
+Sweet Onion Chicken Teriyaki,330,$5.29 ,Subway Sandwich Menu,Six Inch,Sandwich,Subway,static/image_folder/sub.png
+Turkey Breast,500,$8.49 ,Subway Sandwich Menu,Footlong,Sandwich,Subway,static/image_folder/sub.png
+Turkey Breast,250,$5.29 ,Subway Sandwich Menu,Six Inch,Sandwich,Subway,static/image_folder/sub.png
+Veggie Delite,400,$4.99 ,Subway Sandwich Menu,Footlong,Sandwich,Subway,static/image_folder/sub.png
+Veggie Delite,200,$3.49 ,Subway Sandwich Menu,Six Inch,Sandwich,Subway,static/image_folder/sub.png
+Cold Cut Combo,800,$4.99 ,Subway Sandwich Menu,Footlong,Sandwich,Subway,static/image_folder/sub.png
+Cold Cut Combo,400,$3.99 ,Subway Sandwich Menu,Six Inch,Sandwich,Subway,static/image_folder/sub.png
+Italian B.M.T.,800,$8.49 ,Subway Sandwich Menu,Footlong,Sandwich,Subway,static/image_folder/sub.png
+Italian B.M.T.,400,$5.29 ,Subway Sandwich Menu,Six Inch,Sandwich,Subway,static/image_folder/sub.png
+Meatball Marinara,800,$7.29 ,Subway Sandwich Menu,Footlong,Sandwich,Subway,static/image_folder/sub.png
+Meatball Marinara,400,$4.99 ,Subway Sandwich Menu,Six Inch,Sandwich,Subway,static/image_folder/sub.png
+Meatball Marinara,800,$5.29 ,Subway Sandwich Menu,Footlong,Sandwich,Subway,static/image_folder/sub.png
+Meatball Marinara,400,$3.99 ,Subway Sandwich Menu,Six Inch,Sandwich,Subway,static/image_folder/sub.png
+Pizza Sub Melt,800,$7.49 ,Subway Sandwich Menu,Footlong,Sandwich,Subway,static/image_folder/sub.png
+Pizza Sub Melt,400,$4.99 ,Subway Sandwich Menu,Six Inch,Sandwich,Subway,static/image_folder/sub.png
+Steak & Cheese,800,$9.49 ,Subway Sandwich Menu,Footlong,Sandwich,Subway,static/image_folder/sub.png
+Steak & Cheese,400,$6.29 ,Subway Sandwich Menu,Six Inch,Sandwich,Subway,static/image_folder/sub.png
+Tuna,800,$8.49 ,Subway Sandwich Menu,Footlong,Sandwich,Subway,static/image_folder/sub.png
+Tuna,400,$5.29 ,Subway Sandwich Menu,Six Inch,Sandwich,Subway,static/image_folder/sub.png
+Black Forest Ham,800,$6.49 ,Subway Sandwich Menu,Footlong,Sandwich,Subway,static/image_folder/sub.png
+Black Forest Ham,400,$4.99 ,Subway Sandwich Menu,Six Inch,Sandwich,Subway,static/image_folder/sub.png
+Roast Beef,800,$9.49 ,Subway Sandwich Menu,Footlong,Sandwich,Subway,static/image_folder/sub.png
+Roast Beef,400,$6.29 ,Subway Sandwich Menu,Six Inch,Sandwich,Subway,static/image_folder/sub.png
+Turkey Breast,800,$8.49 ,Subway Sandwich Menu,Footlong,Sandwich,Subway,static/image_folder/sub.png
+Turkey Breast,400,$5.29 ,Subway Sandwich Menu,Six Inch,Sandwich,Subway,static/image_folder/sub.png
+Veggie Delite,800,$4.99 ,Subway Sandwich Menu,Footlong,Sandwich,Subway,static/image_folder/sub.png
+Veggie Delite,400,$3.49 ,Subway Sandwich Menu,Six Inch,Sandwich,Subway,static/image_folder/sub.png
+Black Forest Ham,270,$4.99 ,Subway Kids Meal,-,Sandwich,Subway,static/image_folder/sub.png
+Roast Beef,280,$4.99 ,Subway Kids Meal,-,Sandwich,Subway,static/image_folder/sub.png
+Turkey Breast,280,$4.99 ,Subway Kids Meal,-,Sandwich,Subway,static/image_folder/sub.png
+Veggie Delite,240,$4.99 ,Subway Kids Meal,-,Sandwich,Subway,static/image_folder/sub.png
+Black Forest Ham,110,$7.78 ,Subway Chopped Salads Menu,-,Sandwich,Subway,static/image_folder/sub.png
+Roast Beef,120,$8.78 ,Subway Chopped Salads Menu,-,Sandwich,Subway,static/image_folder/sub.png
+Subway Club,130,$8.78 ,Subway Chopped Salads Menu,-,Sandwich,Subway,static/image_folder/sub.png
+Turkey Breast,110,$7.78 ,Subway Chopped Salads Menu,-,Sandwich,Subway,static/image_folder/sub.png
+Veggie Delite,60,$5.98 ,Subway Chopped Salads Menu,-,Sandwich,Subway,static/image_folder/sub.png
+Cold Cut Combo,260,$6.48 ,Subway Chopped Salads Menu,-,Sandwich,Subway,static/image_folder/sub.png
+Italian B.M.T.,240,$7.78 ,Subway Chopped Salads Menu,-,Sandwich,Subway,static/image_folder/sub.png
+Meatball Marinara,290,$6.48 ,Subway Chopped Salads Menu,-,Sandwich,Subway,static/image_folder/sub.png
+Steak & Cheese,200,$8.78 ,Subway Chopped Salads Menu,-,Sandwich,Subway,static/image_folder/sub.png
+Tuna,310,$7.78 ,Subway Chopped Salads Menu,-,Sandwich,Subway,static/image_folder/sub.png
+"Bacon, Egg & Cheese",860,$6.49 ,Subway Breakfast Menu,Footlong,Sandwich,Subway,static/image_folder/sub.png
+"Bacon, Egg & Cheese",430,$4.29 ,Subway Breakfast Menu,Six Inch,Sandwich,Subway,static/image_folder/sub.png
+Egg & Cheese,780,$4.99 ,Subway Breakfast Menu,Footlong,Sandwich,Subway,static/image_folder/sub.png
+Egg & Cheese,390,$3.99 ,Subway Breakfast Menu,Six Inch,Sandwich,Subway,static/image_folder/sub.png
