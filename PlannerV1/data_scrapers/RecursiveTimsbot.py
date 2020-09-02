@@ -121,7 +121,7 @@ except Exception as e:
     traceback.print_exc()
 print(bot.data_dict)
 try:
-    with open('TimsData.csv', 'w') as fd:
+    with open('../data_file/TimsData.csv', 'w') as fd:
         writer = csv.writer(fd)
         for key in bot.data_dict:
             writer.writerow([key, '', bot.data_dict[key]])
