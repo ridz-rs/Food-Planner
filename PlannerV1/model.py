@@ -125,7 +125,7 @@ class Graph:
     def get_plan(self, target_price, target_calories):
         """
 
-        Returns 5 food plans. 
+        Returns a plan within the price and calorie constraints.  
 
         :return: ([json], [float])
         """
@@ -133,13 +133,13 @@ class Graph:
         prices = []
         total_price = 0
         total_calories = 0
-        start = random.randint(0, self.num_vertices-1)
-        while self.adj_list[start] in plan:
+        start = random.randint(0, self.num_vertices-1) # get a random index
+        while not (self.adj_list[start].price< target_price and self.adj_list[start].calories<target_calories): 
             start = random.randint(0, self.num_vertices - 1)
         curr = self.adj_list[start]  # start vertex
-        curr_price = curr.price
-        prices.append(curr_price)
-        total_price += curr_price
+        curr_price = curr.price 
+        # prices.append(curr_price)
+        # total_price += curr_price
         while total_price < target_price and total_calories<target_calories:
             plan.append(curr)
             total_price += curr_price

@@ -27,13 +27,12 @@ def plans():
     tup = ()
     for i in range(5):
         tup = graph.get_plan(price, calorie)
-        plan_lst.append(tup[0])
-        print([item['name'] for item in plan_lst[i]])
-        if(len(plan_lst[i])==0):
+        if len(tup[0])==0:
             continue
-        num_location_lst.append(get_num_location(plan_lst[i]))
+        plan_lst.append(tup[0])
+        num_location_lst.append(get_num_location(tup[0]))
         price_lst.append(round(sum(tup[1]),2))
-        calorie_lst.append(sum([item['calories'] for item in plan_lst[i]]))
+        calorie_lst.append(sum([item['calories'] for item in tup[0]]))
     print(len(plan_lst))
     return render_template("plans.html", plans=plan_lst, prices=price_lst,\
         total_results = len(plan_lst), total_calories = calorie_lst, \
