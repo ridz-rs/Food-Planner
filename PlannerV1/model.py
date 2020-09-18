@@ -145,6 +145,19 @@ class Graph:
                 quantity_covered += 1
         return ret
 
+    def get_destination(self, curr, find_neighbour_function):
+        if find_neighbour_function=="min_neighbour":
+            temp_edge = self.get_min_neighbour(curr) # try get_same_restaurant_neighbour, get_beverage_neighbour
+        elif find_neighbour_function=="min_neighbour_calories":
+            temp_edge = self.get_min_neighbour(curr,True)
+        elif find_neighbour_function=="get_same_genre":
+            temp_edge = self.get_same(curr,'genre')
+        elif find_neighbour_function=="get_same_location":
+            temp_edge = self.get_same(curr, 'location')
+        elif find_neighbour_function=="get_same_building":
+            temp_edge = self.get_same(curr,'building')
+        return temp_edge
+
     def get_plan(self, target_price, target_calories, find_neighbour_function):
         """
 
@@ -153,6 +166,7 @@ class Graph:
         :return: ([json], [float])
         """
         plan = []
+        count = dict({})
         prices = []
         total_price = 0
         total_calories = 0
@@ -165,19 +179,18 @@ class Graph:
         # total_price += curr_price
         while total_price < target_price and total_calories<target_calories:
             plan.append(curr)
+            if curr.name in count.keys():
+                count[curr.name] += 1
+            else:
+                count.setdefault(curr.name, 1)
             total_price += curr_price
             total_calories += curr.calories
-            if find_neighbour_function=="min_neighbour":
-                temp_edge = self.get_min_neighbour(curr) # try get_same_restaurant_neighbour, get_beverage_neighbour
-            elif find_neighbour_function=="min_neighbour_calories":
-                temp_edge = self.get_min_neighbour(curr,True)
-            elif find_neighbour_function=="get_same_genre":
-                temp_edge = self.get_same(curr,'genre')
-            elif find_neighbour_function=="get_same_location":
-                temp_edge = self.get_same(curr, 'location')
-            elif find_neighbour_function=="get_same_building":
-                temp_edge = self.get_same(curr,'building')
+            temp_edge = self.get_destination(curr, find_neighbour_function)
             curr = temp_edge.destination
+            # while curr.name in count.keys() and count[curr.name] > 4:
+            #     print(curr.name, find_neighbour_function)
+            #     temp_edge = self.get_destination(curr, find_neighbour_function)
+            #     curr = temp_edge.destination
             curr_price = curr.price - temp_edge.discount # calculating discount for combo
             if total_price > target_price or total_calories>target_calories:
                 plan.pop()
@@ -196,6 +209,8 @@ class Graph:
         """
         for vertex in self.adj_list:
             for node in self.adj_list:
+                if vertex.name == "Fountain" and node.name=="Fountain":
+                    continue
                 vertex.neighbours.append(Edge(vertex, node))
             
         # name = list(dict.keys())[0]
