@@ -104,6 +104,29 @@ class Graph:
         min_neighbours = [vertex.neighbours[i] for i in indices]
         return min_neighbours[random.randint(0, len(min_neighbours)-1)]
 
+    def get_same(self, vertex, same_by):
+        """
+            returns a neighbour with the same property as specified by same_by
+            possible same_by values: location, genre, building, dietary
+            dietary is a list of strings
+            
+        """
+        possible_options = [] # list of possible edges
+        if same_by== 'dietary':
+            pass
+        else:
+            for edge in vertex.neighbours:
+                if same_by == 'location':
+                    if edge.destination.location == vertex.location:
+                        possible_options.append(edge)
+                elif same_by == 'genre':
+                    if edge.destination.genre == vertex.genre:
+                        possible_options.append(edge)
+                elif same_by == 'building':
+                    if edge.destination.building == vertex.building:
+                        possible_options.append(edge)
+        return possible_options[random.randint(0, len(possible_options)-1)]
+            
     def find_type_neighbour(self, typ, quantity):
         """
             typ: String containing the type wanted
@@ -122,11 +145,11 @@ class Graph:
                 quantity_covered += 1
         return ret
 
-    def get_plan(self, target_price, target_calories):
+    def get_plan(self, target_price, target_calories, find_neighbour_function):
         """
 
         Returns a plan within the price and calorie constraints.  
-
+        find_neighbour_function: min_neighbour, min_neighbour_calories, get_same_genre, get_same_location, get_same_building
         :return: ([json], [float])
         """
         plan = []
@@ -144,9 +167,18 @@ class Graph:
             plan.append(curr)
             total_price += curr_price
             total_calories += curr.calories
-            temp_edge = self.get_min_neighbour(curr)
+            if find_neighbour_function=="min_neighbour":
+                temp_edge = self.get_min_neighbour(curr) # try get_same_restaurant_neighbour, get_beverage_neighbour
+            elif find_neighbour_function=="min_neighbour_calories":
+                temp_edge = self.get_min_neighbour(curr,True)
+            elif find_neighbour_function=="get_same_genre":
+                temp_edge = self.get_same(curr,'genre')
+            elif find_neighbour_function=="get_same_location":
+                temp_edge = self.get_same(curr, 'location')
+            elif find_neighbour_function=="get_same_building":
+                temp_edge = self.get_same(curr,'building')
             curr = temp_edge.destination
-            curr_price = curr.price - temp_edge.discount
+            curr_price = curr.price - temp_edge.discount # calculating discount for combo
             if total_price > target_price or total_calories>target_calories:
                 plan.pop()
                 total_price -= curr_price

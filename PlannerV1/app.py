@@ -25,8 +25,9 @@ def plans():
     calorie_lst = []
     num_location_lst = []
     tup = ()
-    for i in range(5):
-        tup = graph.get_plan(price, calorie)
+    option_list = ['min_neighbour','min_neighbour_calories', 'get_same_location', 'get_same_genre']
+    for i in range(4): # gets 4 plans 
+        tup = graph.get_plan(price, calorie, option_list[i])
         if len(tup[0])==0:
             continue
         plan_lst.append(tup[0])
