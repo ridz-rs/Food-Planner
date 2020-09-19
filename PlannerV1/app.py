@@ -7,8 +7,8 @@ import model
 import ast
 
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = 'static/image_folder'
-Scss(app, static_dir='static', asset_dir='static/css')
+# app.config['UPLOAD_FOLDER'] = 'static/image_folder'
+# Scss(app, static_dir='static', asset_dir='static/css')
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
