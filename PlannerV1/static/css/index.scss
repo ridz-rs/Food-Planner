@@ -1,6 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Jost:wght@300&display=swap');
 
 
+#filterbutton {
+
+}
+
+
 #calories {
   top: 21%;
   left: 10%;
@@ -50,6 +55,11 @@
     position: absolute;
 }
 
+.popup-content #submit{
+  font-size: 100%;
+  position: relative;
+  top: 10%;
+}
 #submit {
     width: 40%;
     height: 14%;
@@ -134,31 +144,72 @@ input[type="range"]::-moz-range-progress {
 }
 
 .popup {
-  background: rgba(0,0,0,0.6);
+  background: rgba(0,0,0,0.7);
   width: 100%;
   height: 100%;
   position: absolute;
   top: 0;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
 }
 
+.popup.open{
+  display: flex;
+  animation: showpopup 0.5s;
+}
+
+@keyframes showpopup{
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
 .popup-content {
   height: 250px;
   width: 500px;
   background-color: #FFFFFF;
-  padding: 20px;
+  padding: 5px;
   border-radius: 5px;
   position: relative;
+  font-family: Jost;
 }
 
-.building-wise .location-wise {
-  margin: 20px auto;
-  width: 50%;
-  display: block;
-  padding: 8px;
-  border: 1px solid grey;
-  
+#top_line{
+  display: flex;
+  flex-direction: row;
+}
 
+#top_line > #close{
+  float: right;
+  margin-top: 0%;
+  margin-left: 75%;
+  height: 5%;
+  width: 5%;
+}
+
+h2 { //Filter title
+  position: relative;
+  margin-left: 8%;
+  font-size: 150%;
+  margin-bottom: 0%;
+}
+
+#f {
+  text-align: right;
+  position: absolute;
+  left: 80%;
+}
+
+.filters {
+  display: block;
+  padding: 0.1px;
+  margin: 1px 1px;
+  outline: black;
+}
+
+.filters ul {
+  list-style-type: none;
 }

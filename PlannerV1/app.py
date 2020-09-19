@@ -59,4 +59,4 @@ def get_num_location(lst):
 
 
 if __name__=="__main__":
-    app.run(debug=1)
+    app.run(debug=1, host="10.0.0.198")
