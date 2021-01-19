@@ -152,11 +152,13 @@ input[type="range"]::-moz-range-progress {
   display: none;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
 .popup.open{
   display: flex;
   animation: showpopup 0.5s;
+  overflow: hidden;
 }
 
 @keyframes showpopup{
@@ -175,6 +177,7 @@ input[type="range"]::-moz-range-progress {
   border-radius: 5px;
   position: relative;
   font-family: Jost;
+  overflow: hidden;
 }
 
 #top_line{
@@ -197,7 +200,7 @@ h2 { //Filter title
   margin-bottom: 0%;
 }
 
-#f {
+.f {
   text-align: right;
   position: absolute;
   left: 80%;

@@ -24,22 +24,24 @@
                 <button type="submit" id="submit">Show me meal plans</button>
             </div>
         </form>
-        <div class="popup">
-            <div class="popup-content">
-                <div id="top_line">
-                <h2 class="popup-title">Filters</h2>
-                <img id="close" src="../static/image_folder/close.png" alt="close" onclick="toggleLogin()">
+        <form method="POST">
+            <div class="popup">
+                <div class="popup-content">
+                    <div id="top_line">
+                    <h2 class="popup-title">Filters</h2>
+                    <img id="close" src="../static/image_folder/close.png" alt="close" onclick="toggleLogin()">
+                </div>
+                <div class="filters">
+                    <ul>
+                    <li>CloseBy <input type="checkbox" class="f"  placeholder="Building" name="building"></li>
+                    <li>Same Restaurant <input type="checkbox" class="f" placeholder="Location" name="same_restaurant"></li>
+                    <li>Genre <input type="checkbox" class="f"  placeholder="Gnere" name="genre"></li>
+                    <li>Maximise Quantity <input type="checkbox" class="f" placeholder="MaxQuantity" name=max_quant></li>
+                    </ul>
+                </div>
+                <button id="submit">Apply filters</button>
             </div>
-            <div class="filters">
-                <ul>
-                <li>CloseBy <input type="checkbox" id="f"  placeholder="Building"></li>
-                <li>Same Restaurant <input type="checkbox" id="f" placeholder="Location"></li>
-                <li>Genre <input type="checkbox" id="f"  placeholder="Building"></li>
-                <li>Maximise Quantity <input type="checkbox" id="f" placeholder="Location"></li>
-                </ul>
-            </div>
-            <button id="submit">Apply filters</button>
-        </div>
+        </form>
     </div>
 </body>
 <script>

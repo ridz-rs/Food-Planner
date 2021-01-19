@@ -175,8 +175,6 @@ class Graph:
             start = random.randint(0, self.num_vertices - 1)
         curr = self.adj_list[start]  # start vertex
         curr_price = curr.price 
-        # prices.append(curr_price)
-        # total_price += curr_price
         while total_price < target_price and total_calories<target_calories:
             plan.append(curr)
             if curr.name in count.keys():
@@ -187,10 +185,6 @@ class Graph:
             total_calories += curr.calories
             temp_edge = self.get_destination(curr, find_neighbour_function)
             curr = temp_edge.destination
-            # while curr.name in count.keys() and count[curr.name] > 4:
-            #     print(curr.name, find_neighbour_function)
-            #     temp_edge = self.get_destination(curr, find_neighbour_function)
-            #     curr = temp_edge.destination
             curr_price = curr.price - temp_edge.discount # calculating discount for combo
             if total_price > target_price or total_calories>target_calories:
                 plan.pop()
@@ -201,9 +195,9 @@ class Graph:
         plan = [v.json_encoder() for v in plan]
         return plan, prices
 
-    def construct_combo(self, lst):
+    def connect_graph(self, lst):
         """
-        constructs a combo by placing edge values between vertices of the graph
+        Connnect the vertices of the graph.
         :param lst: A list of Dictionary with data parameters
         :return: None
         """
@@ -213,18 +207,8 @@ class Graph:
                     continue
                 vertex.neighbours.append(Edge(vertex, node))
             
-        # name = list(dict.keys())[0]
-        # discount = list(dict[name].keys())[0]
-        # targets = []
-        # for typ,quantity in dict[name][discount].items():
-        #     if typ is not '-':
-        #         targets.extend(self.find_type_neighbour(typ, quantity))
-        # for node in self.adj_list:
-        #     for n in self.adj_list:
-        #         if n in targets:
-        #             node.neighbours.append(Edge(node, n, discount, name))
-        #         else:
-        #             node.neighbours.append(Edge(node, n))
+    def create_combos(self):
+        pass
 
 
 def show_plan(plan, prices):

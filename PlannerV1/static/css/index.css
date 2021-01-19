@@ -151,11 +151,13 @@ input[type=range]::-ms-fill-upper {
   display: none;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
 .popup.open {
   display: flex;
   animation: showpopup 0.5s;
+  overflow: hidden;
 }
 
 @keyframes showpopup {
@@ -174,6 +176,7 @@ input[type=range]::-ms-fill-upper {
   border-radius: 5px;
   position: relative;
   font-family: Jost;
+  overflow: hidden;
 }
 
 #top_line {
@@ -196,7 +199,7 @@ h2 {
   margin-bottom: 0%;
 }
 
-#f {
+.f {
   text-align: right;
   position: absolute;
   left: 80%;

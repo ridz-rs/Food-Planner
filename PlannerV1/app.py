@@ -12,7 +12,18 @@ app = Flask(__name__)
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
-    return render_template("index.html")
+    if request.method == 'POST':
+        building = request.form["building"]
+        print(building)
+        same_restaurant = request.form["same_restaurant"]
+        print(same_restaurant)
+        genre = request.form["genre"]
+        print(genre)
+        max_quant = request.form["max_quant"]
+        print(max_quant)
+        return render_template("index.html", building=building, same_restaurant=same_restaurant, genre=genre,max_quant=max_quant)
+    else:
+        return render_template("index.html")
 
 
 @app.route("/plans", methods=['POST'])
@@ -34,7 +45,6 @@ def plans():
         num_location_lst.append(get_num_location(tup[0]))
         price_lst.append(round(sum(tup[1]),2))
         calorie_lst.append(sum([item['calories'] for item in tup[0]]))
-    print(len(plan_lst))
     return render_template("plans.html", plans=plan_lst, prices=price_lst,\
         total_results = len(plan_lst), total_calories = calorie_lst, \
             num_location_lst=num_location_lst)
@@ -44,6 +54,7 @@ def details():
     plan = request.args.getlist('plan', None)
     item_lst = [ast.literal_eval(item) for item in plan]
     return render_template("details.html", items = item_lst)
+
 
 def get_num_location(lst):
     """
@@ -57,6 +68,9 @@ def get_num_location(lst):
             count += 1
     return count
 
+def apply_filters():
+    return render_template("index.html")
+
 
 if __name__=="__main__":
-    app.run(debug=1, host="10.0.0.198")
+    app.run(debug=1, host="10.10.10.1")

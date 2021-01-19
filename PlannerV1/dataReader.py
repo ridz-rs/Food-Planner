@@ -13,7 +13,7 @@ def initialize_data():
     with open("data_files/ComboData.csv", 'r') as db_file:
         db = csv.DictReader(db_file)
         data_lst = list(db)
-        graph.construct_combo(data_lst)
+        graph.connect_graph(data_lst)
         # print(data_lst)
     # graph.display()
     return graph
